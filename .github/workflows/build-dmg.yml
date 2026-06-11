@@ -92,7 +92,9 @@ jobs:
         run: |
           BUILD="${{ steps.ver.outputs.build }}"
           APP="build/Build/Products/Release/AltTab.app"
-          DMG="AltTab-Free-$BUILD.dmg"
+          # stable asset name so README can link releases/latest/download/AltTab-Free.dmg
+          # (the release tag carries the version)
+          DMG="AltTab-Free.dmg"
           ZIP="AltTab-Free-$BUILD.zip"
           mkdir -p dist/stage
           cp -R "$APP" "dist/stage/AltTab Free.app"

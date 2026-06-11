@@ -8,7 +8,9 @@
 
 ## Installation
 
-1. Download the latest `AltTab-Free-<version>.dmg` from the [Releases](../../releases) page.
+**[⬇ Download AltTab-Free.dmg (latest version)](https://github.com/justinbaduaa/alt-tab-macos-free/releases/latest/download/AltTab-Free.dmg)**
+
+1. Download the DMG above (or pick any build from the [Releases](../../releases) page).
 2. Open the DMG and drag **AltTab Free** into your **Applications** folder.
 
 ### "AltTab Free can't be opened" warning

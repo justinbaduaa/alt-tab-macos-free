@@ -433,7 +433,12 @@ class App: AppCenterApplication {
 
 extension App: NSApplicationDelegate {
     func applicationDidFinishLaunching(_ aNotification: Notification) {
-        App.appCenterDelegate = AppCenterCrash()
+        // Fork: no AppCenter secret is configured, so crash reporting can't reach any
+        // backend — skip initializing the framework entirely rather than starting it
+        // with an empty secret.
+        if !Secrets.appCenterSecret.isEmpty {
+            App.appCenterDelegate = AppCenterCrash()
+        }
         App.shared.disableRelaunchOnLogin()
         Logger.initialize()
         Logger.info { "Launching AltTab \(App.version)" }

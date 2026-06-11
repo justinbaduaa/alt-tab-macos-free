@@ -31,13 +31,9 @@ class SparkleDelegate: NSObject, SPUUpdaterDelegate {
     }
 
     func feedParameters(for updater: SPUUpdater, sendingSystemProfile sendingProfile: Bool) -> [[String: String]] {
-        let v = ProcessInfo.processInfo.operatingSystemVersion
-        return [
-            ["key": "version", "value": App.version],
-            ["key": "macos", "value": "\(v.majorVersion).\(v.minorVersion).\(v.patchVersion)"],
-            ["key": "arch", "value": Sysctl.run("hw.machine")],
-            ["key": "lang", "value": Locale.preferredLanguages.first ?? "unknown"],
-        ]
+        // Fork: upstream appends version/macOS/arch/language to every update check for
+        // server-side analytics. Our feed is a static GitHub asset — send nothing.
+        return []
     }
 
     func updater(_ updater: SPUUpdater, didFindValidUpdate item: SUAppcastItem) {

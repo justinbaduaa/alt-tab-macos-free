@@ -60,8 +60,9 @@
 	</array>
 
 	<!-- ===== Sparkle (auto-update framework — reads these directly from the bundle) ===== -->
+	<!-- Fork: our own update-signing key (upstream's key would reject our archives) -->
 	<key>SUPublicEDKey</key>
-	<string>2e9SQOBoaKElchSa/4QDli/nvYkyuDNfynfzBF6vJK4=</string>
+	<string>gmyb2WXJ/IE/XXq2hHnYWHyN+pGqS2yz9ivEsR50eOA=</string>
 	<key>SUEnableAutomaticChecks</key>
 	<string>true</string>
 	<key>SUScheduledCheckInterval</key>

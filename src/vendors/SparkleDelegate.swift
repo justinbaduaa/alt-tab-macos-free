@@ -24,10 +24,10 @@ class SparkleDelegate: NSObject, SPUUpdaterDelegate {
     var onNextCheckCompletion: ((UpdateCheckResult) -> Void)?
 
     func feedURLString(for updater: SPUUpdater) -> String? {
-        // Local fork: updates are disabled. Returning nil prevents Sparkle from ever
-        // contacting the official appcast — a successful update would replace this
-        // patched build with the upstream paywalled release.
-        return nil
+        // Fork: point Sparkle at this fork's own appcast (published by CI on every
+        // release) instead of the official one — updating from the upstream appcast
+        // would replace this patched build with the paywalled release.
+        return "https://github.com/justinbaduaa/alt-tab-macos-free/releases/latest/download/appcast.xml"
     }
 
     func feedParameters(for updater: SPUUpdater, sendingSystemProfile sendingProfile: Bool) -> [[String: String]] {

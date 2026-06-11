@@ -15,7 +15,8 @@ Four small, self-contained changes on top of upstream:
 | File | Change |
 |------|--------|
 | `src/pro/license/LicenseManager.swift` | `computeState()` always returns `.pro` — single source of truth, so all gates/nags/badges resolve to Pro. No server call (none happens without a license key). |
-| `src/vendors/SparkleDelegate.swift` | `feedURLString` returns `nil` — disables the auto-updater so it can't replace this build with the upstream paywalled release. |
+| `src/vendors/SparkleDelegate.swift` | `feedURLString` points at this fork's own appcast (`releases/latest/download/appcast.xml`) — auto-updates come from this repo's CI instead of the upstream paywalled release. |
+| `Info.plist` (`SUPublicEDKey`) | Replaced with the fork's own Sparkle EdDSA public key, matching the private key CI signs update archives with. |
 | `config/base.xcconfig` | `PRODUCT_BUNDLE_IDENTIFIER` → `com.lwouis.alt-tab-macos.free` — distinct identity so it coexists with an official AltTab and gets its own permission entries. |
 | `Info.plist` | `CFBundleName` / `CFBundleDisplayName` → "AltTab Free". |
 
@@ -38,13 +39,32 @@ grants across updates — set `ALTTAB_SIGN_ID` in `update.sh` to a code-signing
 identity from `security find-identity -v -p codesigning`. With ad-hoc signing
 (`ALTTAB_SIGN_ID=""`) you re-grant after each update.
 
-## CI / `.dmg`
+## CI / releases / auto-update
 
-`.github/workflows/build-dmg.yml` builds the patched app on a macOS runner and
-produces an **unsigned `.dmg`** as a workflow artifact (and attaches it to
-GitHub Releases). Unsigned means recipients do a **one-time right-click → Open**
-to clear Gatekeeper. (Zero-warning distribution would need a paid Apple
-Developer ID + notarization.)
+`.github/workflows/build-dmg.yml` is the release pipeline. Every push to
+`master` (except markdown-only changes):
+
+1. builds the patched app on a macOS runner
+2. signs it with the fork's **self-signed certificate** (`AltTab Free Dev`) —
+   a stable identity, so Accessibility/Screen Recording grants survive updates
+3. packages a `.dmg` (first-time manual install) and a `.zip` (Sparkle update)
+4. signs the zip with the fork's **Sparkle EdDSA key** and generates `appcast.xml`
+5. publishes all three as a GitHub Release tagged `v<version>.<commit-count>`
+
+Installed apps poll `releases/latest/download/appcast.xml` (weekly, or via a
+manual check in settings), so each release reaches users automatically —
+no reinstall needed.
+
+Signing material lives in the repo's Actions secrets (`MACOS_CERT_P12_BASE64`,
+`MACOS_CERT_P12_PASSWORD`, `SPARKLE_ED_PRIVATE_KEY`), with local backups in
+`~/.config/alt-tab-free/`. **Don't lose or rotate the Sparkle key casually** —
+installed apps only accept updates signed by it, so a rotation forces every
+user to reinstall manually. Same for the cert: a new cert means users
+re-grant permissions once after the next update.
+
+Gatekeeper still warns on the **first** manual install (self-signed ≠
+notarized; zero-warning distribution needs a paid Apple Developer ID), but
+Sparkle updates skip quarantine entirely, so updates are warning-free.
 
 The upstream `ci_cd.yml` pipeline is disabled on this fork (it needs signing
 secrets we don't have); we don't edit it, to avoid merge conflicts on update.

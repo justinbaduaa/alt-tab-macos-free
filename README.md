@@ -22,3 +22,5 @@ xattr -d com.apple.quarantine "/Applications/AltTab Free.app"
 ```
 
 Alternatively, try to open the app once, then go to **System Settings → Privacy & Security**, scroll down, and click **Open Anyway**.
+
+This is only needed once: after the first install, the app updates itself in-app (checks weekly), and those updates don't trigger the warning.

@@ -1,8 +1,18 @@
 name: Build AltTab Free DMG
 
-# Builds the patched (free) AltTab and packages an unsigned .dmg.
-# Unsigned => recipients do a one-time right-click → Open to bypass Gatekeeper.
-# Runs on push to master, manual dispatch, or when a Release is published.
+# Release pipeline: every push to master builds the patched (free) AltTab,
+# signs it with the fork's self-signed certificate (stable identity => macOS
+# permissions survive updates), packages a .dmg (manual install) and a .zip
+# (Sparkle auto-update), signs the zip with the fork's Sparkle EdDSA key, and
+# publishes everything as a GitHub Release together with appcast.xml.
+#
+# Installed apps point at .../releases/latest/download/appcast.xml, so cutting
+# a release here IS the update push — Sparkle picks it up on its next check.
+#
+# Secrets:
+#   MACOS_CERT_P12_BASE64 / MACOS_CERT_P12_PASSWORD — self-signed codesign cert
+#   SPARKLE_ED_PRIVATE_KEY — EdDSA private key matching SUPublicEDKey in Info.plist
+# (backed up locally in ~/.config/alt-tab-free/)
 
 on:
   push:
@@ -10,12 +20,6 @@ on:
     paths-ignore:
       - '**.md'
   workflow_dispatch:
-    inputs:
-      version:
-        description: "Version string (e.g. 8.3.3). Defaults to latest tag."
-        required: false
-  release:
-    types: [ published ]
 
 permissions:
   contents: write
@@ -36,16 +40,31 @@ jobs:
       - name: Determine version
         id: ver
         run: |
-          V="${{ github.event.inputs.version }}"
-          if [ -z "$V" ] && [ "${{ github.event_name }}" = "release" ]; then
-            V="${{ github.event.release.tag_name }}"
-          fi
-          # highest version tag (doesn't require reachability, unlike git describe)
-          [ -z "$V" ] && V="$(git tag --sort=-v:refname | grep -E '^v?[0-9]' | head -1 | sed 's/^v//')"
+          # marketing version: highest upstream version tag
+          V="$(git tag --sort=-v:refname | grep -E '^v?[0-9]' | head -1 | sed 's/^v//')"
           [ -z "$V" ] && V="0.0.0"
           V="${V#v}"
+          # build version: marketing + monotonic commit count, so Sparkle sees
+          # every master push as a newer version
+          BUILD="$V.$(git rev-list --count HEAD)"
           echo "version=$V" >> "$GITHUB_OUTPUT"
-          echo "Building AltTab Free $V"
+          echo "build=$BUILD" >> "$GITHUB_OUTPUT"
+          echo "Building AltTab Free $BUILD"
+
+      - name: Import signing certificate
+        env:
+          P12_BASE64: ${{ secrets.MACOS_CERT_P12_BASE64 }}
+          P12_PASSWORD: ${{ secrets.MACOS_CERT_P12_PASSWORD }}
+        run: |
+          KEYCHAIN_PW="$(openssl rand -hex 16)"
+          security create-keychain -p "$KEYCHAIN_PW" build.keychain
+          security unlock-keychain -p "$KEYCHAIN_PW" build.keychain
+          security set-keychain-settings build.keychain   # no auto-lock
+          echo "$P12_BASE64" | base64 --decode > cert.p12
+          security import cert.p12 -k build.keychain -P "$P12_PASSWORD" -T /usr/bin/codesign
+          rm cert.p12
+          security set-key-partition-list -S apple-tool:,apple:,codesign: -s -k "$KEYCHAIN_PW" build.keychain > /dev/null
+          security list-keychains -d user -s build.keychain login.keychain
 
       - name: Build (Release, unsigned)
         run: |
@@ -54,41 +73,82 @@ jobs:
             CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO CODE_SIGNING_ALLOWED=NO \
             build
 
-      - name: Stamp version + ad-hoc sign
+      - name: Stamp version + sign
         run: |
           APP="build/Build/Products/Release/AltTab.app"
           PL="$APP/Contents/Info.plist"
           V="${{ steps.ver.outputs.version }}"
+          BUILD="${{ steps.ver.outputs.build }}"
           # upstream leaves CFBundleVersion as $(CURRENT_PROJECT_VERSION); blank crashes on launch
-          /usr/libexec/PlistBuddy -c "Set :CFBundleVersion $V" "$PL" 2>/dev/null \
-            || /usr/libexec/PlistBuddy -c "Add :CFBundleVersion string $V" "$PL"
+          /usr/libexec/PlistBuddy -c "Set :CFBundleVersion $BUILD" "$PL" 2>/dev/null \
+            || /usr/libexec/PlistBuddy -c "Add :CFBundleVersion string $BUILD" "$PL"
           /usr/libexec/PlistBuddy -c "Set :CFBundleShortVersionString $V" "$PL" 2>/dev/null \
             || /usr/libexec/PlistBuddy -c "Add :CFBundleShortVersionString string $V" "$PL"
-          codesign --force --deep --sign - "$APP"
+          codesign --force --deep --sign "AltTab Free Dev" --keychain build.keychain "$APP"
+          codesign --verify --deep "$APP"
 
-      - name: Package DMG
-        id: dmg
+      - name: Package DMG + update zip
+        id: pkg
         run: |
-          V="${{ steps.ver.outputs.version }}"
+          BUILD="${{ steps.ver.outputs.build }}"
           APP="build/Build/Products/Release/AltTab.app"
-          NAME="AltTab-Free-$V.dmg"
+          DMG="AltTab-Free-$BUILD.dmg"
+          ZIP="AltTab-Free-$BUILD.zip"
           mkdir -p dist/stage
           cp -R "$APP" "dist/stage/AltTab Free.app"
+          # Sparkle update archive (zip keeps it small and fast to install)
+          ditto -c -k --sequesterRsrc --keepParent "dist/stage/AltTab Free.app" "$ZIP"
+          # DMG for first-time manual installs
           ln -s /Applications "dist/stage/Applications"
           hdiutil create -volname "AltTab Free" -srcfolder dist/stage \
-            -ov -format UDZO "$NAME"
-          echo "name=$NAME" >> "$GITHUB_OUTPUT"
-          ls -lh "$NAME"
+            -ov -format UDZO "$DMG"
+          echo "dmg=$DMG" >> "$GITHUB_OUTPUT"
+          echo "zip=$ZIP" >> "$GITHUB_OUTPUT"
+          ls -lh "$DMG" "$ZIP"
 
-      - name: Upload artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: AltTab-Free-${{ steps.ver.outputs.version }}
-          path: ${{ steps.dmg.outputs.name }}
-          if-no-files-found: error
+      - name: Generate appcast.xml
+        env:
+          SPARKLE_ED_PRIVATE_KEY: ${{ secrets.SPARKLE_ED_PRIVATE_KEY }}
+        run: |
+          V="${{ steps.ver.outputs.version }}"
+          BUILD="${{ steps.ver.outputs.build }}"
+          ZIP="${{ steps.pkg.outputs.zip }}"
+          printf '%s' "$SPARKLE_ED_PRIVATE_KEY" > ed_key
+          SIGNATURE="$(vendor/Sparkle/bin/sign_update --ed-key-file ed_key -p "$ZIP")"
+          rm ed_key
+          LENGTH="$(stat -f %z "$ZIP")"
+          URL="https://github.com/${{ github.repository }}/releases/download/v$BUILD/$ZIP"
+          cat > appcast.xml <<EOF
+          <?xml version="1.0" standalone="yes"?>
+          <rss xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle" version="2.0">
+            <channel>
+              <title>AltTab Free</title>
+              <language>en</language>
+              <item>
+                <title>Version $BUILD</title>
+                <pubDate>$(date -u '+%a, %d %b %Y %H:%M:%S +0000')</pubDate>
+                <sparkle:minimumSystemVersion>10.13</sparkle:minimumSystemVersion>
+                <link>https://github.com/${{ github.repository }}/releases</link>
+                <enclosure
+                  url="$URL"
+                  sparkle:version="$BUILD"
+                  sparkle:shortVersionString="$V"
+                  sparkle:edSignature="$SIGNATURE" length="$LENGTH"
+                  type="application/octet-stream"/>
+              </item>
+            </channel>
+          </rss>
+          EOF
+          cat appcast.xml
 
-      - name: Attach DMG to release
-        if: github.event_name == 'release'
-        uses: softprops/action-gh-release@v2
-        with:
-          files: ${{ steps.dmg.outputs.name }}
+      - name: Publish release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          BUILD="${{ steps.ver.outputs.build }}"
+          gh release create "v$BUILD" \
+            --title "AltTab Free $BUILD" \
+            --notes "$(git log -1 --pretty='%s (%h)')" \
+            "${{ steps.pkg.outputs.dmg }}" \
+            "${{ steps.pkg.outputs.zip }}" \
+            appcast.xml

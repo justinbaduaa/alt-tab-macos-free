@@ -27,7 +27,8 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0   # need tags for version detection
+          fetch-depth: 0      # full history
+          fetch-tags: true    # need tags for version detection
 
       - name: Select latest stable Xcode
         run: sudo xcode-select -s "$(ls -d /Applications/Xcode_*.app | sort -V | tail -1)" || true
@@ -39,7 +40,8 @@ jobs:
           if [ -z "$V" ] && [ "${{ github.event_name }}" = "release" ]; then
             V="${{ github.event.release.tag_name }}"
           fi
-          [ -z "$V" ] && V="$(git describe --tags --abbrev=0 2>/dev/null | sed 's/^v//')"
+          # highest version tag (doesn't require reachability, unlike git describe)
+          [ -z "$V" ] && V="$(git tag --sort=-v:refname | grep -E '^v?[0-9]' | head -1 | sed 's/^v//')"
           [ -z "$V" ] && V="0.0.0"
           V="${V#v}"
           echo "version=$V" >> "$GITHUB_OUTPUT"

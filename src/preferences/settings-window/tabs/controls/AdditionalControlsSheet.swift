@@ -10,15 +10,17 @@ class AdditionalControlsSheet: SheetWindow {
     private static let labelVim = NSLocalizedString("Select windows using vim keys", comment: "")
     private static let labelMouse = NSLocalizedString("Select windows on mouse hover", comment: "")
     private static let labelScroll = NSLocalizedString("Select windows by scrolling", comment: "")
+    private static let labelScrollDirection = NSLocalizedString("Scrolling direction", comment: "")
     private static let labelCursorFollow = NSLocalizedString("Cursor follows focus", comment: "")
     private static let labelTrackpad = NSLocalizedString("Trackpad haptic feedback", comment: "")
 
     /// Pre-build search index for the open-button. See `SettingsSearchIndex.sheetSearchableStrings`.
     static let searchableStrings: [String] = [
         title, titleMiscellaneous,
-        labelArrows, labelVim, labelMouse, labelScroll,
+        labelArrows, labelVim, labelMouse, labelScroll, labelScrollDirection,
         labelCursorFollow, labelTrackpad,
     ] + CursorFollowFocus.allCases.map { $0.localizedString }
+      + ScrollToSelectDirection.allCases.map { $0.localizedString }
 
     override func makeContentView() -> NSView {
         let enableArrows = TableGroupView.Row(leftTitle: Self.labelArrows,
@@ -29,6 +31,8 @@ class AdditionalControlsSheet: SheetWindow {
             rightViews: [LabelAndControl.makeSwitch("mouseHoverEnabled")])
         let enableScroll = TableGroupView.Row(leftTitle: Self.labelScroll,
             rightViews: [LabelAndControl.makeSwitch("scrollToSelectEnabled")])
+        let scrollDirection = TableGroupView.Row(leftTitle: Self.labelScrollDirection,
+            rightViews: [LabelAndControl.makeDropdown("scrollToSelectDirection", ScrollToSelectDirection.allCases)])
         let enableCursorFollowFocus = TableGroupView.Row(leftTitle: Self.labelCursorFollow,
             rightViews: [LabelAndControl.makeDropdown("cursorFollowFocus", CursorFollowFocus.allCases)])
         let enableTrackpadHapticFeedback = TableGroupView.Row(leftTitle: Self.labelTrackpad,
@@ -42,6 +46,7 @@ class AdditionalControlsSheet: SheetWindow {
         _ = table1.addRow(enableVimKeys)
         _ = table1.addRow(enableMouse)
         _ = table1.addRow(enableScroll)
+        _ = table1.addRow(scrollDirection)
         let table2 = TableGroupView(title: Self.titleMiscellaneous, width: SheetWindow.width)
         _ = table2.addRow(enableCursorFollowFocus)
         _ = table2.addRow(enableTrackpadHapticFeedback)

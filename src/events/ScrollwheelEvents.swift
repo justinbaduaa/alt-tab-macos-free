@@ -59,8 +59,9 @@ class ScrollwheelEvents {
         return Unmanaged.passUnretained(cgEvent) // focused app will receive the event
     }
 
-    /// scrolling up moves the selection up. Trackpads accumulate precise pixel deltas so a
-    /// continuous swipe steps through the list; mouse wheels step once per notch
+    /// the selection follows the scroll direction (or the opposite, per the direction setting).
+    /// Trackpads accumulate precise pixel deltas so a continuous swipe steps through the list;
+    /// mouse wheels step once per notch
     private static func handleSelectionScroll(_ cgEvent: CGEvent) -> Bool {
         guard let nsEvent = cgEvent.toNSEvent() else { return false }
         let delta = nsEvent.scrollingDeltaY
@@ -82,12 +83,14 @@ class ScrollwheelEvents {
     }
 
     private static func cycleSelection(_ steps: Int) {
+        // positive steps = scrollingDeltaY > 0 = the user scrolled down (with natural scrolling)
+        let goesUp = Preferences.scrollToSelectDirection == .reversed ? steps > 0 : steps < 0
         DispatchQueue.main.async {
             if Preferences.trackpadHapticFeedbackEnabled {
                 NSHapticFeedbackManager.defaultPerformer.perform(.generic, performanceTime: .default)
             }
             for _ in 0..<abs(steps) {
-                App.cycleSelection(steps > 0 ? .up : .down, allowWrap: false)
+                App.cycleSelection(goesUp ? .up : .down, allowWrap: false)
             }
         }
     }

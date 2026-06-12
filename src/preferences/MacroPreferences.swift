@@ -259,6 +259,20 @@ enum CursorFollowFocus: CaseIterable, MacroPreference {
     }
 }
 
+enum ScrollToSelectDirection: CaseIterable, MacroPreference {
+    /// the selection follows the scroll direction: scrolling down moves it down the list
+    case standard
+    /// the selection moves opposite to the scroll direction
+    case reversed
+
+    var localizedString: LocalizedString {
+        switch self {
+            case .standard: return NSLocalizedString("Standard", comment: "")
+            case .reversed: return NSLocalizedString("Reversed", comment: "")
+        }
+    }
+}
+
 enum ShowTitlesPreference: CaseIterable, MacroPreference {
     case windowTitle
     case appName

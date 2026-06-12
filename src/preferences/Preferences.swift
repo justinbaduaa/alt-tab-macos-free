@@ -20,6 +20,7 @@ class Preferences {
             "arrowKeysEnabled": "true",
             "vimKeysEnabled": "false",
             "mouseHoverEnabled": "false",
+            "scrollToSelectEnabled": "true",
             "cursorFollowFocus": CursorFollowFocus.never.indexAsString,
             "hideColoredCircles": "false",
             "windowDisplayDelay": "100",
@@ -113,6 +114,7 @@ class Preferences {
     // periphery:ignore
     static var vimKeysEnabled: Bool { CachedUserDefaults.bool("vimKeysEnabled") }
     static var mouseHoverEnabled: Bool { CachedUserDefaults.bool("mouseHoverEnabled") }
+    static var scrollToSelectEnabled: Bool { CachedUserDefaults.bool("scrollToSelectEnabled") }
     static var cursorFollowFocus: CursorFollowFocus { CachedUserDefaults.macroPref("cursorFollowFocus", CursorFollowFocus.allCases) }
     static var trackpadHapticFeedbackEnabled: Bool { CachedUserDefaults.bool("trackpadHapticFeedbackEnabled") }
     static var hideColoredCircles: Bool { CachedUserDefaults.bool("hideColoredCircles") }

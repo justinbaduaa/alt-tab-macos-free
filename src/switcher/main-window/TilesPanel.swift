@@ -93,6 +93,9 @@ class TilesPanel: NSPanel {
         makeKeyAndOrderFront(nil)
         ContextMenuEvents.toggle(true)
         CursorEvents.toggle(true)
+        if Preferences.scrollToSelectEnabled {
+            ScrollwheelEvents.toggle(true)
+        }
         DispatchQueue.main.async { TilesView.scrollView.flashScrollers() }
     }
 

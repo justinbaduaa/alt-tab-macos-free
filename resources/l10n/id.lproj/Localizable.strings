@@ -59,6 +59,7 @@
 "Auto-install updates periodically" = "Pasang pembaruan otomatis secara berkala";
 "Auto-sizing switcher" = "Pengalih ukuran otomatis";
 "Automatic activation failed" = "Aktivasi otomatis gagal";
+"Background tint" = "Rona latar belakang";
 "Brief description of the bug" = "Deskripsi singkat tentang bug";
 "Brief description of the change" = "Deskripsi singkat tentang perubahan";
 "Bundle ID" = "Bundle ID";
@@ -72,6 +73,7 @@
 "Conflicting shortcut" = "Pintasan bertentangan";
 "Continue with Free" = "Lanjutkan dengan Gratis";
 "Controls" = "Kontrol";
+"Corner roundness" = "Kelengkungan sudut";
 "Could not move to Applications folder" = "Tidak dapat memindahkan ke folder Aplikasi";
 "Couldn't deactivate that machine" = "Tidak dapat menonaktifkan mesin tersebut";
 "Couldn't save your license to the macOS Keychain. Please share the details below with the developer." = "Tidak dapat menyimpan lisensi Anda ke Rantai Kunci macOS. Bagikan detail di bawah ini kepada pengembang.";
@@ -165,6 +167,7 @@
 "Not now" = "Tidak sekarang";
 "OK" = "OK";
 "On Day 15, Pro features revert to the free version." = "Pada Hari ke-15, fitur Pro kembali ke versi gratis.";
+"Only applies to the Titles style" = "Hanya berlaku untuk gaya Judul";
 "Only on different screen" = "Hanya pada layar berbeda";
 "Open Accessibility Settings…" = "Buka Pengaturan Aksesibilitas…";
 "Open Screen Recording Settings…" = "Buka Pengaturan Perekaman Layar…";
@@ -176,6 +179,7 @@
 "Pick a machine to deactivate so you can activate here." = "Pilih mesin untuk dinonaktifkan agar Anda dapat mengaktifkan di sini.";
 "Please drag AltTab into the Applications folder manually." = "Seret AltTab ke folder Aplikasi secara manual.";
 "Please fill in the form" = "Isi formulir";
+"Preview next to the window list" = "Pratinjau di samping daftar jendela";
 "Preview selected window" = "Pratinjau jendela terpilih";
 "Pro" = "Pro";
 "Pro activated" = "Pro diaktifkan";
@@ -299,6 +303,7 @@
 "Window is minimized" = "Jendela diminimalkan";
 "Window is on every Space" = "Jendela ada di setiap Ruang";
 "Window is on Space %d" = "Jendela ada di Ruang %d";
+"Window opacity" = "Opasitas jendela";
 "Window previews" = "Pratinjau jendela";
 "window switches" = "pengalihan jendela";
 "Window Title" = "Judul Jendela";

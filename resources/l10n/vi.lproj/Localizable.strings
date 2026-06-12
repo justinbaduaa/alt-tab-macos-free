@@ -59,6 +59,7 @@
 "Auto-install updates periodically" = "Tự động cài đặt cập nhật định kỳ";
 "Auto-sizing switcher" = "Trình chuyển đổi tự điều chỉnh kích cỡ";
 "Automatic activation failed" = "Kích hoạt tự động thất bại";
+"Background tint" = "Tông màu nền";
 "Brief description of the bug" = "Mô tả ngắn gọn về lỗi";
 "Brief description of the change" = "Mô tả ngắn gọn về thay đổi";
 "Bundle ID" = "Bundle ID";
@@ -72,6 +73,7 @@
 "Conflicting shortcut" = "Phím tắt xung đột";
 "Continue with Free" = "Tiếp tục với bản Miễn phí";
 "Controls" = "Điều khiển";
+"Corner roundness" = "Độ bo góc";
 "Could not move to Applications folder" = "Không thể di chuyển vào thư mục Ứng dụng";
 "Couldn't deactivate that machine" = "Không thể hủy kích hoạt máy đó";
 "Couldn't save your license to the macOS Keychain. Please share the details below with the developer." = "Không thể lưu giấy phép của bạn vào Chuỗi khóa macOS. Vui lòng chia sẻ chi tiết bên dưới với nhà phát triển.";
@@ -165,6 +167,7 @@
 "Not now" = "Không phải bây giờ";
 "OK" = "OK";
 "On Day 15, Pro features revert to the free version." = "Vào Ngày thứ 15, các tính năng Pro sẽ trở về phiên bản miễn phí.";
+"Only applies to the Titles style" = "Chỉ áp dụng cho kiểu Tiêu đề";
 "Only on different screen" = "Chỉ trên màn hình khác";
 "Open Accessibility Settings…" = "Mở Cài đặt Trợ năng…";
 "Open Screen Recording Settings…" = "Mở Cài đặt Ghi màn hình…";
@@ -176,6 +179,7 @@
 "Pick a machine to deactivate so you can activate here." = "Chọn một máy để hủy kích hoạt để bạn có thể kích hoạt tại đây.";
 "Please drag AltTab into the Applications folder manually." = "Vui lòng kéo AltTab vào thư mục Ứng dụng theo cách thủ công.";
 "Please fill in the form" = "Vui lòng điền vào biểu mẫu";
+"Preview next to the window list" = "Xem trước bên cạnh danh sách cửa sổ";
 "Preview selected window" = "Xem trước cửa sổ đã chọn";
 "Pro" = "Pro";
 "Pro activated" = "Đã kích hoạt Pro";
@@ -299,6 +303,7 @@
 "Window is minimized" = "Cửa sổ đang được thu nhỏ";
 "Window is on every Space" = "Cửa sổ ở trên mọi Không gian";
 "Window is on Space %d" = "Cửa sổ ở trên Không gian %d";
+"Window opacity" = "Độ mờ đục của cửa sổ";
 "Window previews" = "Bản xem trước cửa sổ";
 "window switches" = "lượt chuyển cửa sổ";
 "Window Title" = "Tiêu đề cửa sổ";

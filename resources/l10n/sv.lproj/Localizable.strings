@@ -59,6 +59,7 @@
 "Auto-install updates periodically" = "Installera uppdateringar automatiskt regelbundet";
 "Auto-sizing switcher" = "Växlare med automatisk storlek";
 "Automatic activation failed" = "Automatisk aktivering misslyckades";
+"Background tint" = "Bakgrundston";
 "Brief description of the bug" = "Kort beskrivning av felet";
 "Brief description of the change" = "Kort beskrivning av ändringen";
 "Bundle ID" = "Bundle ID";
@@ -72,6 +73,7 @@
 "Conflicting shortcut" = "Kortkommando i konflikt";
 "Continue with Free" = "Fortsätt med Free";
 "Controls" = "Kontroller";
+"Corner roundness" = "Hörnrundning";
 "Could not move to Applications folder" = "Kunde inte flytta till mappen Program";
 "Couldn't deactivate that machine" = "Kunde inte inaktivera den datorn";
 "Couldn't save your license to the macOS Keychain. Please share the details below with the developer." = "Kunde inte spara din licens i macOS Nyckelring. Dela uppgifterna nedan med utvecklaren.";
@@ -165,6 +167,7 @@
 "Not now" = "Inte nu";
 "OK" = "OK";
 "On Day 15, Pro features revert to the free version." = "På dag 15 återgår Pro-funktionerna till gratisversionen.";
+"Only applies to the Titles style" = "Gäller endast stilen Titlar";
 "Only on different screen" = "Endast på annan skärm";
 "Open Accessibility Settings…" = "Öppna inställningar för Hjälpmedel…";
 "Open Screen Recording Settings…" = "Öppna inställningar för Skärminspelning…";
@@ -176,6 +179,7 @@
 "Pick a machine to deactivate so you can activate here." = "Välj en dator att inaktivera så att du kan aktivera här.";
 "Please drag AltTab into the Applications folder manually." = "Dra AltTab till mappen Program manuellt.";
 "Please fill in the form" = "Fyll i formuläret";
+"Preview next to the window list" = "Förhandsvisning bredvid fönsterlistan";
 "Preview selected window" = "Förhandsvisa valt fönster";
 "Pro" = "Pro";
 "Pro activated" = "Pro aktiverad";
@@ -299,6 +303,7 @@
 "Window is minimized" = "Fönster minimerat";
 "Window is on every Space" = "Fönster på varje skrivbord";
 "Window is on Space %d" = "Fönster på skrivbord %d";
+"Window opacity" = "Fönstrets opacitet";
 "Window previews" = "Fönsterförhandsvisningar";
 "window switches" = "fönsterväxlingar";
 "Window Title" = "Fönstertitel";

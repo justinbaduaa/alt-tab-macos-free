@@ -59,6 +59,7 @@
 "Auto-install updates periodically" = "Instalar atualizações automaticamente de tempos em tempos";
 "Auto-sizing switcher" = "Seletor com tamanho automático";
 "Automatic activation failed" = "Falha na ativação automática";
+"Background tint" = "Tonalidade do fundo";
 "Brief description of the bug" = "Breve descrição do bug";
 "Brief description of the change" = "Breve descrição da mudança";
 "Bundle ID" = "Bundle ID";
@@ -72,6 +73,7 @@
 "Conflicting shortcut" = "Atalho em conflito";
 "Continue with Free" = "Continuar com a versão gratuita";
 "Controls" = "Controles";
+"Corner roundness" = "Arredondamento dos cantos";
 "Could not move to Applications folder" = "Não foi possível mover para a pasta Aplicativos";
 "Couldn't deactivate that machine" = "Não foi possível desativar essa máquina";
 "Couldn't save your license to the macOS Keychain. Please share the details below with the developer." = "Não foi possível salvar sua licença no Acesso às Chaves do macOS. Compartilhe os detalhes abaixo com o desenvolvedor.";
@@ -165,6 +167,7 @@
 "Not now" = "Agora não";
 "OK" = "OK";
 "On Day 15, Pro features revert to the free version." = "No dia 15, os recursos Pro voltam à versão gratuita.";
+"Only applies to the Titles style" = "Aplica-se apenas ao estilo Títulos";
 "Only on different screen" = "Apenas em outra tela";
 "Open Accessibility Settings…" = "Abrir Ajustes de Acessibilidade…";
 "Open Screen Recording Settings…" = "Abrir Ajustes de Gravação de Tela…";
@@ -176,6 +179,7 @@
 "Pick a machine to deactivate so you can activate here." = "Escolha uma máquina para desativar e poder ativar aqui.";
 "Please drag AltTab into the Applications folder manually." = "Arraste o AltTab para a pasta Aplicativos manualmente.";
 "Please fill in the form" = "Preencha o formulário";
+"Preview next to the window list" = "Pré-visualização ao lado da lista de janelas";
 "Preview selected window" = "Pré-visualizar janela selecionada";
 "Pro" = "Pro";
 "Pro activated" = "Pro ativado";
@@ -299,6 +303,7 @@
 "Window is minimized" = "Janela minimizada";
 "Window is on every Space" = "Janela em todos os Espaços";
 "Window is on Space %d" = "Janela no Espaço %d";
+"Window opacity" = "Opacidade da janela";
 "Window previews" = "Pré-visualizações de janela";
 "window switches" = "alternâncias de janela";
 "Window Title" = "Título da Janela";

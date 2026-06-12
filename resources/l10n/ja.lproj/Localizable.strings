@@ -59,6 +59,7 @@
 "Auto-install updates periodically" = "アップデートを定期的に自動インストール";
 "Auto-sizing switcher" = "自動サイズのスイッチャー";
 "Automatic activation failed" = "自動アクティベーションに失敗しました";
+"Background tint" = "背景の色合い";
 "Brief description of the bug" = "バグの簡単な説明";
 "Brief description of the change" = "変更の簡単な説明";
 "Bundle ID" = "Bundle ID";
@@ -72,6 +73,7 @@
 "Conflicting shortcut" = "ショートカットの競合";
 "Continue with Free" = "無料版を続ける";
 "Controls" = "コントロール";
+"Corner roundness" = "角の丸み";
 "Could not move to Applications folder" = "アプリケーションフォルダに移動できませんでした";
 "Couldn't deactivate that machine" = "そのマシンを非アクティブ化できませんでした";
 "Couldn't save your license to the macOS Keychain. Please share the details below with the developer." = "ライセンスを macOS キーチェーンに保存できませんでした。以下の詳細を開発者に共有してください。";
@@ -165,6 +167,7 @@
 "Not now" = "今はしない";
 "OK" = "OK";
 "On Day 15, Pro features revert to the free version." = "15 日目に Pro 機能は無料版に戻ります。";
+"Only applies to the Titles style" = "「タイトル」スタイルにのみ適用されます";
 "Only on different screen" = "別の画面のときのみ";
 "Open Accessibility Settings…" = "アクセシビリティ設定を開く…";
 "Open Screen Recording Settings…" = "画面収録設定を開く…";
@@ -176,6 +179,7 @@
 "Pick a machine to deactivate so you can activate here." = "ここでアクティベートできるよう、非アクティブ化するマシンを選択してください。";
 "Please drag AltTab into the Applications folder manually." = "AltTab を手動でアプリケーションフォルダにドラッグしてください。";
 "Please fill in the form" = "フォームを入力してください";
+"Preview next to the window list" = "ウインドウリストの横にプレビューを表示";
 "Preview selected window" = "選択したウインドウをプレビュー";
 "Pro" = "Pro";
 "Pro activated" = "Pro がアクティベートされました";
@@ -299,6 +303,7 @@
 "Window is minimized" = "最小化されたウインドウ";
 "Window is on every Space" = "すべての Space にあるウインドウ";
 "Window is on Space %d" = "Space %d にあるウインドウ";
+"Window opacity" = "ウインドウの不透明度";
 "Window previews" = "ウィンドウプレビュー";
 "window switches" = "ウインドウ切り替え";
 "Window Title" = "ウインドウタイトル";

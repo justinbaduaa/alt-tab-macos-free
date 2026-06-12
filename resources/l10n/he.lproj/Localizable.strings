@@ -59,6 +59,7 @@
 "Auto-install updates periodically" = "התקן עדכונים אוטומטית מעת לעת";
 "Auto-sizing switcher" = "מחליף בגודל אוטומטי";
 "Automatic activation failed" = "ההפעלה האוטומטית נכשלה";
+"Background tint" = "גוון הרקע";
 "Brief description of the bug" = "תיאור קצר של הבאג";
 "Brief description of the change" = "תיאור קצר של השינוי";
 "Bundle ID" = "Bundle ID";
@@ -72,6 +73,7 @@
 "Conflicting shortcut" = "קיצור דרך מתנגש";
 "Continue with Free" = "המשך עם הגרסה החינמית";
 "Controls" = "פקדים";
+"Corner roundness" = "עיגול פינות";
 "Could not move to Applications folder" = "לא ניתן היה להעביר לתיקיית היישומים";
 "Couldn't deactivate that machine" = "לא ניתן היה לבטל את הפעלת המכשיר הזה";
 "Couldn't save your license to the macOS Keychain. Please share the details below with the developer." = "לא ניתן היה לשמור את הרישיון שלך בצרור המפתחות של macOS. שתף את הפרטים שלהלן עם המפתח.";
@@ -165,6 +167,7 @@
 "Not now" = "לא עכשיו";
 "OK" = "אישור";
 "On Day 15, Pro features revert to the free version." = "ביום ה-15, תכונות Pro חוזרות לגרסה החינמית.";
+"Only applies to the Titles style" = "חל רק על סגנון הכותרות";
 "Only on different screen" = "רק במסך אחר";
 "Open Accessibility Settings…" = "פתח הגדרות נגישות…";
 "Open Screen Recording Settings…" = "פתח הגדרות הקלטת מסך…";
@@ -176,6 +179,7 @@
 "Pick a machine to deactivate so you can activate here." = "בחר מכשיר לביטול הפעלה כדי שתוכל להפעיל כאן.";
 "Please drag AltTab into the Applications folder manually." = "גרור את AltTab לתיקיית היישומים באופן ידני.";
 "Please fill in the form" = "מלא את הטופס";
+"Preview next to the window list" = "תצוגה מקדימה לצד רשימת החלונות";
 "Preview selected window" = "תצוגה מקדימה של החלון הנבחר";
 "Pro" = "Pro";
 "Pro activated" = "Pro הופעל";
@@ -299,6 +303,7 @@
 "Window is minimized" = "חלון ממוזער";
 "Window is on every Space" = "חלון נמצא בכל מרחב";
 "Window is on Space %d" = "חלון נמצא במרחב %d";
+"Window opacity" = "אטימות החלון";
 "Window previews" = "תצוגות מקדימות של חלונות";
 "window switches" = "החלפות חלונות";
 "Window Title" = "כותרת חלון";

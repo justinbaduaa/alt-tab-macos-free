@@ -59,6 +59,7 @@
 "Auto-install updates periodically" = "Automatycznie instaluj uaktualnienia okresowo";
 "Auto-sizing switcher" = "Przełącznik z automatycznym rozmiarem";
 "Automatic activation failed" = "Automatyczna aktywacja nie powiodła się";
+"Background tint" = "Odcień tła";
 "Brief description of the bug" = "Krótki opis błędu";
 "Brief description of the change" = "Krótki opis zmiany";
 "Bundle ID" = "Bundle ID";
@@ -72,6 +73,7 @@
 "Conflicting shortcut" = "Sprzeczny skrót";
 "Continue with Free" = "Kontynuuj w wersji darmowej";
 "Controls" = "Sterowanie";
+"Corner roundness" = "Zaokrąglenie rogów";
 "Could not move to Applications folder" = "Nie udało się przenieść do folderu Aplikacje";
 "Couldn't deactivate that machine" = "Nie udało się dezaktywować tego komputera";
 "Couldn't save your license to the macOS Keychain. Please share the details below with the developer." = "Nie udało się zapisać licencji w Pęku kluczy macOS. Udostępnij poniższe szczegóły deweloperowi.";
@@ -165,6 +167,7 @@
 "Not now" = "Nie teraz";
 "OK" = "OK";
 "On Day 15, Pro features revert to the free version." = "15. dnia funkcje Pro powrócą do wersji darmowej.";
+"Only applies to the Titles style" = "Dotyczy tylko stylu Tytuły";
 "Only on different screen" = "Tylko na innym ekranie";
 "Open Accessibility Settings…" = "Otwórz ustawienia Dostępności…";
 "Open Screen Recording Settings…" = "Otwórz ustawienia Nagrywania ekranu…";
@@ -176,6 +179,7 @@
 "Pick a machine to deactivate so you can activate here." = "Wybierz komputer do dezaktywacji, aby aktywować tutaj.";
 "Please drag AltTab into the Applications folder manually." = "Przeciągnij AltTab do folderu Aplikacje ręcznie.";
 "Please fill in the form" = "Wypełnij formularz";
+"Preview next to the window list" = "Podgląd obok listy okien";
 "Preview selected window" = "Podgląd zaznaczonego okna";
 "Pro" = "Pro";
 "Pro activated" = "Pro aktywowane";
@@ -299,6 +303,7 @@
 "Window is minimized" = "Okno zminimalizowane";
 "Window is on every Space" = "Okno na każdej Przestrzeni";
 "Window is on Space %d" = "Okno na Przestrzeni %d";
+"Window opacity" = "Krycie okna";
 "Window previews" = "Podglądy okien";
 "window switches" = "przełączeń okien";
 "Window Title" = "Tytuł okna";

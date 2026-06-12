@@ -59,6 +59,7 @@
 "Auto-install updates periodically" = "定期自動安裝更新";
 "Auto-sizing switcher" = "自動調整大小的切換器";
 "Automatic activation failed" = "自動啟用失敗";
+"Background tint" = "背景色調";
 "Brief description of the bug" = "問題的簡短描述";
 "Brief description of the change" = "變更的簡短描述";
 "Bundle ID" = "Bundle ID";
@@ -72,6 +73,7 @@
 "Conflicting shortcut" = "快捷鍵衝突";
 "Continue with Free" = "繼續使用免費版";
 "Controls" = "控制項";
+"Corner roundness" = "圓角程度";
 "Could not move to Applications folder" = "無法移至「應用程式」檔案夾";
 "Couldn't deactivate that machine" = "無法停用該部機器";
 "Couldn't save your license to the macOS Keychain. Please share the details below with the developer." = "無法將您的授權儲存至 macOS 鑰匙圈。請將以下詳細資料分享給開發者。";
@@ -165,6 +167,7 @@
 "Not now" = "暫時不要";
 "OK" = "好";
 "On Day 15, Pro features revert to the free version." = "在第 15 天,Pro 功能會回復為免費版本。";
+"Only applies to the Titles style" = "只適用於「標題」樣式";
 "Only on different screen" = "僅在不同螢幕上";
 "Open Accessibility Settings…" = "打開「輔助使用」設定…";
 "Open Screen Recording Settings…" = "打開「螢幕錄製」設定…";
@@ -176,6 +179,7 @@
 "Pick a machine to deactivate so you can activate here." = "請選一部機器停用,以便在此啟用。";
 "Please drag AltTab into the Applications folder manually." = "請手動將 AltTab 拖至「應用程式」檔案夾。";
 "Please fill in the form" = "請填寫表格";
+"Preview next to the window list" = "在視窗列表旁邊顯示預覽";
 "Preview selected window" = "預覽選取的視窗";
 "Pro" = "Pro";
 "Pro activated" = "Pro 已啟用";
@@ -299,6 +303,7 @@
 "Window is minimized" = "視窗已縮到最小";
 "Window is on every Space" = "視窗位於每個空間";
 "Window is on Space %d" = "視窗位於空間 %d";
+"Window opacity" = "視窗不透明度";
 "Window previews" = "視窗預覽";
 "window switches" = "次視窗切換";
 "Window Title" = "視窗標題";

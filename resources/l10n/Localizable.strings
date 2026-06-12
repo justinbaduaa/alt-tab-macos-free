@@ -182,6 +182,9 @@
 "Automatic activation failed" = "Automatic activation failed";
 
 /* No comment provided by engineer. */
+"Background tint" = "Background tint";
+
+/* No comment provided by engineer. */
 "Brief description of the bug" = "Brief description of the bug";
 
 /* No comment provided by engineer. */
@@ -219,6 +222,9 @@
 
 /* No comment provided by engineer. */
 "Controls" = "Controls";
+
+/* No comment provided by engineer. */
+"Corner roundness" = "Corner roundness";
 
 /* LetsMove replacement alert */
 "Could not move to Applications folder" = "Could not move to Applications folder";
@@ -500,6 +506,9 @@
 "On Day 15, Pro features revert to the free version." = "On Day 15, Pro features revert to the free version.";
 
 /* No comment provided by engineer. */
+"Only applies to the Titles style" = "Only applies to the Titles style";
+
+/* No comment provided by engineer. */
 "Only on different screen" = "Only on different screen";
 
 /* No comment provided by engineer. */
@@ -531,6 +540,9 @@
 
 /* No comment provided by engineer. */
 "Please fill in the form" = "Please fill in the form";
+
+/* No comment provided by engineer. */
+"Preview next to the window list" = "Preview next to the window list";
 
 /* No comment provided by engineer. */
 "Preview selected window" = "Preview selected window";
@@ -900,6 +912,9 @@
 
 /* No comment provided by engineer. */
 "Window is on Space %d" = "Window is on Space %d";
+
+/* No comment provided by engineer. */
+"Window opacity" = "Window opacity";
 
 /* Menubar callout subject: the preview-selected-window feature */
 "Window previews" = "Window previews";

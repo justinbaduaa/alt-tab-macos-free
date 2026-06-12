@@ -59,6 +59,7 @@
 "Auto-install updates periodically" = "تثبيت التحديثات تلقائيًا بشكل دوري";
 "Auto-sizing switcher" = "مُحوّل بحجم تلقائي";
 "Automatic activation failed" = "فشل التفعيل التلقائي";
+"Background tint" = "درجة لون الخلفية";
 "Brief description of the bug" = "وصف موجز للخلل";
 "Brief description of the change" = "وصف موجز للتغيير";
 "Bundle ID" = "Bundle ID";
@@ -72,6 +73,7 @@
 "Conflicting shortcut" = "اختصار متعارض";
 "Continue with Free" = "المتابعة بالإصدار المجاني";
 "Controls" = "عناصر التحكم";
+"Corner roundness" = "استدارة الزوايا";
 "Could not move to Applications folder" = "تعذّر النقل إلى مجلد التطبيقات";
 "Couldn't deactivate that machine" = "تعذّر إلغاء تفعيل ذلك الجهاز";
 "Couldn't save your license to the macOS Keychain. Please share the details below with the developer." = "تعذّر حفظ ترخيصك في سلسلة مفاتيح macOS. يُرجى مشاركة التفاصيل أدناه مع المطوّر.";
@@ -165,6 +167,7 @@
 "Not now" = "ليس الآن";
 "OK" = "موافق";
 "On Day 15, Pro features revert to the free version." = "في اليوم 15، تعود ميزات Pro إلى الإصدار المجاني.";
+"Only applies to the Titles style" = "ينطبق فقط على نمط العناوين";
 "Only on different screen" = "فقط على شاشة مختلفة";
 "Open Accessibility Settings…" = "فتح إعدادات إمكانية الوصول…";
 "Open Screen Recording Settings…" = "فتح إعدادات تسجيل الشاشة…";
@@ -176,6 +179,7 @@
 "Pick a machine to deactivate so you can activate here." = "اختر جهازًا لإلغاء تفعيله حتى تتمكن من التفعيل هنا.";
 "Please drag AltTab into the Applications folder manually." = "يرجى سحب AltTab إلى مجلد التطبيقات يدويًا.";
 "Please fill in the form" = "يرجى ملء النموذج";
+"Preview next to the window list" = "معاينة بجانب قائمة النوافذ";
 "Preview selected window" = "معاينة النافذة المحددة";
 "Pro" = "Pro";
 "Pro activated" = "تم تفعيل Pro";
@@ -299,6 +303,7 @@
 "Window is minimized" = "النافذة مصغّرة";
 "Window is on every Space" = "النافذة في كل مساحة";
 "Window is on Space %d" = "النافذة في المساحة %d";
+"Window opacity" = "عتامة النافذة";
 "Window previews" = "معاينات النوافذ";
 "window switches" = "تبديلات النوافذ";
 "Window Title" = "عنوان النافذة";

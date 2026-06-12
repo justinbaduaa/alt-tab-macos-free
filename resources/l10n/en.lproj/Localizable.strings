@@ -59,6 +59,7 @@
 "Auto-install updates periodically" = "Auto-install updates periodically";
 "Auto-sizing switcher" = "Auto-sizing switcher";
 "Automatic activation failed" = "Automatic activation failed";
+"Background tint" = "Background tint";
 "Brief description of the bug" = "Brief description of the bug";
 "Brief description of the change" = "Brief description of the change";
 "Bundle ID" = "Bundle ID";
@@ -72,6 +73,7 @@
 "Conflicting shortcut" = "Conflicting shortcut";
 "Continue with Free" = "Continue with Free";
 "Controls" = "Controls";
+"Corner roundness" = "Corner roundness";
 "Could not move to Applications folder" = "Could not move to Applications folder";
 "Couldn't deactivate that machine" = "Couldn't deactivate that machine";
 "Couldn't save your license to the macOS Keychain. Please share the details below with the developer." = "Couldn't save your license to the macOS Keychain. Please share the details below with the developer.";
@@ -165,6 +167,7 @@
 "Not now" = "Not now";
 "OK" = "OK";
 "On Day 15, Pro features revert to the free version." = "On Day 15, Pro features revert to the free version.";
+"Only applies to the Titles style" = "Only applies to the Titles style";
 "Only on different screen" = "Only on different screen";
 "Open Accessibility Settings…" = "Open Accessibility Settings…";
 "Open Screen Recording Settings…" = "Open Screen Recording Settings…";
@@ -176,6 +179,7 @@
 "Pick a machine to deactivate so you can activate here." = "Pick a machine to deactivate so you can activate here.";
 "Please drag AltTab into the Applications folder manually." = "Please drag AltTab into the Applications folder manually.";
 "Please fill in the form" = "Please fill in the form";
+"Preview next to the window list" = "Preview next to the window list";
 "Preview selected window" = "Preview selected window";
 "Pro" = "Pro";
 "Pro activated" = "Pro activated";
@@ -299,6 +303,7 @@
 "Window is minimized" = "Window is minimized";
 "Window is on every Space" = "Window is on every Space";
 "Window is on Space %d" = "Window is on Space %d";
+"Window opacity" = "Window opacity";
 "Window previews" = "Window previews";
 "window switches" = "window switches";
 "Window Title" = "Window Title";

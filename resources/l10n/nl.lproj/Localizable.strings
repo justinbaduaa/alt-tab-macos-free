@@ -59,6 +59,7 @@
 "Auto-install updates periodically" = "Updates regelmatig automatisch installeren";
 "Auto-sizing switcher" = "Wisselaar met automatische grootte";
 "Automatic activation failed" = "Automatische activering mislukt";
+"Background tint" = "Achtergrondtint";
 "Brief description of the bug" = "Korte beschrijving van de bug";
 "Brief description of the change" = "Korte beschrijving van de wijziging";
 "Bundle ID" = "Bundle ID";
@@ -72,6 +73,7 @@
 "Conflicting shortcut" = "Conflicterende sneltoets";
 "Continue with Free" = "Doorgaan met gratis versie";
 "Controls" = "Bediening";
+"Corner roundness" = "Afronding van hoeken";
 "Could not move to Applications folder" = "Kan niet naar map Programma's verplaatsen";
 "Couldn't deactivate that machine" = "Kon dat apparaat niet deactiveren";
 "Couldn't save your license to the macOS Keychain. Please share the details below with the developer." = "Kon je licentie niet opslaan in de macOS Sleutelhanger. Deel de gegevens hieronder met de ontwikkelaar.";
@@ -165,6 +167,7 @@
 "Not now" = "Niet nu";
 "OK" = "OK";
 "On Day 15, Pro features revert to the free version." = "Op dag 15 keren Pro-functies terug naar de gratis versie.";
+"Only applies to the Titles style" = "Geldt alleen voor de stijl 'Titels'";
 "Only on different screen" = "Alleen op een ander scherm";
 "Open Accessibility Settings…" = "Open Toegankelijkheid-instellingen…";
 "Open Screen Recording Settings…" = "Open Schermopname-instellingen…";
@@ -176,6 +179,7 @@
 "Pick a machine to deactivate so you can activate here." = "Kies een apparaat om te deactiveren zodat je hier kunt activeren.";
 "Please drag AltTab into the Applications folder manually." = "Sleep AltTab handmatig naar de map Programma's.";
 "Please fill in the form" = "Vul het formulier in";
+"Preview next to the window list" = "Voorvertoning naast de vensterlijst";
 "Preview selected window" = "Voorvertoning van geselecteerd venster";
 "Pro" = "Pro";
 "Pro activated" = "Pro geactiveerd";
@@ -299,6 +303,7 @@
 "Window is minimized" = "Venster is geminimaliseerd";
 "Window is on every Space" = "Venster op elke Space";
 "Window is on Space %d" = "Venster op Space %d";
+"Window opacity" = "Ondoorzichtigheid van venster";
 "Window previews" = "Venstervoorvertoningen";
 "window switches" = "vensterwissels";
 "Window Title" = "Venstertitel";

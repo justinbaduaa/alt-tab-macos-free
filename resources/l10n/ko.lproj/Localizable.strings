@@ -59,6 +59,7 @@
 "Auto-install updates periodically" = "주기적으로 업데이트 자동 설치";
 "Auto-sizing switcher" = "자동 크기 전환기";
 "Automatic activation failed" = "자동 활성화 실패";
+"Background tint" = "배경 색조";
 "Brief description of the bug" = "버그에 대한 간단한 설명";
 "Brief description of the change" = "변경 사항에 대한 간단한 설명";
 "Bundle ID" = "Bundle ID";
@@ -72,6 +73,7 @@
 "Conflicting shortcut" = "충돌하는 단축키";
 "Continue with Free" = "무료 버전으로 계속";
 "Controls" = "컨트롤";
+"Corner roundness" = "모서리 둥글기";
 "Could not move to Applications folder" = "응용 프로그램 폴더로 이동할 수 없습니다";
 "Couldn't deactivate that machine" = "해당 기기를 비활성화할 수 없습니다";
 "Couldn't save your license to the macOS Keychain. Please share the details below with the developer." = "라이선스를 macOS 키체인에 저장할 수 없습니다. 아래 세부 정보를 개발자와 공유해 주세요.";
@@ -165,6 +167,7 @@
 "Not now" = "지금은 안 함";
 "OK" = "확인";
 "On Day 15, Pro features revert to the free version." = "15일째에 Pro 기능은 무료 버전으로 되돌아갑니다.";
+"Only applies to the Titles style" = "'제목' 스타일에만 적용됨";
 "Only on different screen" = "다른 화면에서만";
 "Open Accessibility Settings…" = "손쉬운 사용 설정 열기…";
 "Open Screen Recording Settings…" = "화면 녹화 설정 열기…";
@@ -176,6 +179,7 @@
 "Pick a machine to deactivate so you can activate here." = "여기서 활성화하려면 비활성화할 기기를 선택하세요.";
 "Please drag AltTab into the Applications folder manually." = "AltTab을 응용 프로그램 폴더로 직접 드래그해 주세요.";
 "Please fill in the form" = "양식을 작성해 주세요";
+"Preview next to the window list" = "윈도우 목록 옆에 미리보기 표시";
 "Preview selected window" = "선택한 윈도우 미리보기";
 "Pro" = "Pro";
 "Pro activated" = "Pro 활성화됨";
@@ -299,6 +303,7 @@
 "Window is minimized" = "윈도우 최소화됨";
 "Window is on every Space" = "윈도우가 모든 Space에 있음";
 "Window is on Space %d" = "윈도우가 Space %d에 있음";
+"Window opacity" = "윈도우 불투명도";
 "Window previews" = "윈도우 미리보기";
 "window switches" = "회 윈도우 전환";
 "Window Title" = "윈도우 제목";

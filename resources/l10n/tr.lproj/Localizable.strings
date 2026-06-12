@@ -59,6 +59,7 @@
 "Auto-install updates periodically" = "Güncellemeleri düzenli olarak otomatik yükle";
 "Auto-sizing switcher" = "Otomatik boyutlandırılan değiştirici";
 "Automatic activation failed" = "Otomatik etkinleştirme başarısız";
+"Background tint" = "Arka plan tonu";
 "Brief description of the bug" = "Hatanın kısa açıklaması";
 "Brief description of the change" = "Değişikliğin kısa açıklaması";
 "Bundle ID" = "Bundle ID";
@@ -72,6 +73,7 @@
 "Conflicting shortcut" = "Çakışan kısayol";
 "Continue with Free" = "Ücretsiz ile devam et";
 "Controls" = "Denetimler";
+"Corner roundness" = "Köşe yuvarlaklığı";
 "Could not move to Applications folder" = "Uygulamalar klasörüne taşınamadı";
 "Couldn't deactivate that machine" = "Bu makine devre dışı bırakılamadı";
 "Couldn't save your license to the macOS Keychain. Please share the details below with the developer." = "Lisansınız macOS Anahtar Zinciri’ne kaydedilemedi. Aşağıdaki ayrıntıları geliştiriciyle paylaşın.";
@@ -165,6 +167,7 @@
 "Not now" = "Şimdi değil";
 "OK" = "Tamam";
 "On Day 15, Pro features revert to the free version." = "15. günde Pro özellikleri ücretsiz sürüme döner.";
+"Only applies to the Titles style" = "Yalnızca Başlıklar stili için geçerlidir";
 "Only on different screen" = "Yalnızca farklı ekranda";
 "Open Accessibility Settings…" = "Erişilebilirlik ayarlarını aç…";
 "Open Screen Recording Settings…" = "Ekran Kaydı ayarlarını aç…";
@@ -176,6 +179,7 @@
 "Pick a machine to deactivate so you can activate here." = "Burada etkinleştirebilmek için devre dışı bırakılacak bir makine seçin.";
 "Please drag AltTab into the Applications folder manually." = "Lütfen AltTab’ı el ile Uygulamalar klasörüne sürükleyin.";
 "Please fill in the form" = "Lütfen formu doldurun";
+"Preview next to the window list" = "Pencere listesinin yanında önizleme";
 "Preview selected window" = "Seçili pencereyi önizle";
 "Pro" = "Pro";
 "Pro activated" = "Pro etkinleştirildi";
@@ -299,6 +303,7 @@
 "Window is minimized" = "Pencere küçültülmüş";
 "Window is on every Space" = "Pencere her Alanda";
 "Window is on Space %d" = "Pencere %d numaralı Alanda";
+"Window opacity" = "Pencere matlığı";
 "Window previews" = "Pencere önizlemeleri";
 "window switches" = "pencere değişimi";
 "Window Title" = "Pencere Başlığı";

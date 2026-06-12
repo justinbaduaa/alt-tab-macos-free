@@ -59,6 +59,7 @@
 "Auto-install updates periodically" = "Периодически устанавливать обновления автоматически";
 "Auto-sizing switcher" = "Переключатель с авторазмером";
 "Automatic activation failed" = "Не удалось выполнить автоматическую активацию";
+"Background tint" = "Оттенок фона";
 "Brief description of the bug" = "Краткое описание ошибки";
 "Brief description of the change" = "Краткое описание изменения";
 "Bundle ID" = "Bundle ID";
@@ -72,6 +73,7 @@
 "Conflicting shortcut" = "Конфликт сочетания клавиш";
 "Continue with Free" = "Продолжить с бесплатной версией";
 "Controls" = "Управление";
+"Corner roundness" = "Скругление углов";
 "Could not move to Applications folder" = "Не удалось переместить в папку «Программы»";
 "Couldn't deactivate that machine" = "Не удалось деактивировать этот компьютер";
 "Couldn't save your license to the macOS Keychain. Please share the details below with the developer." = "Не удалось сохранить лицензию в Связке ключей macOS. Передайте указанные ниже сведения разработчику.";
@@ -165,6 +167,7 @@
 "Not now" = "Не сейчас";
 "OK" = "OK";
 "On Day 15, Pro features revert to the free version." = "На 15-й день функции Pro вернутся к бесплатной версии.";
+"Only applies to the Titles style" = "Применяется только к стилю «Заголовки»";
 "Only on different screen" = "Только на другом экране";
 "Open Accessibility Settings…" = "Открыть настройки Универсального доступа…";
 "Open Screen Recording Settings…" = "Открыть настройки Записи экрана…";
@@ -176,6 +179,7 @@
 "Pick a machine to deactivate so you can activate here." = "Выберите компьютер для деактивации, чтобы активировать здесь.";
 "Please drag AltTab into the Applications folder manually." = "Перетащите AltTab в папку «Программы» вручную.";
 "Please fill in the form" = "Заполните форму";
+"Preview next to the window list" = "Предпросмотр рядом со списком окон";
 "Preview selected window" = "Предпросмотр выбранного окна";
 "Pro" = "Pro";
 "Pro activated" = "Pro активирован";
@@ -299,6 +303,7 @@
 "Window is minimized" = "Окно свёрнуто";
 "Window is on every Space" = "Окно на всех пространствах";
 "Window is on Space %d" = "Окно в пространстве %d";
+"Window opacity" = "Непрозрачность окна";
 "Window previews" = "Превью окон";
 "window switches" = "переключений окон";
 "Window Title" = "Заголовок окна";

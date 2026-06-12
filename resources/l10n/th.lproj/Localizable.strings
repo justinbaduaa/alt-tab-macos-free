@@ -59,6 +59,7 @@
 "Auto-install updates periodically" = "ติดตั้งอัปเดตอัตโนมัติเป็นระยะ";
 "Auto-sizing switcher" = "ตัวสลับขนาดอัตโนมัติ";
 "Automatic activation failed" = "การเปิดใช้งานอัตโนมัติล้มเหลว";
+"Background tint" = "โทนสีพื้นหลัง";
 "Brief description of the bug" = "คำอธิบายโดยย่อของข้อบกพร่อง";
 "Brief description of the change" = "คำอธิบายโดยย่อของการเปลี่ยนแปลง";
 "Bundle ID" = "Bundle ID";
@@ -72,6 +73,7 @@
 "Conflicting shortcut" = "ทางลัดที่ขัดแย้งกัน";
 "Continue with Free" = "ใช้งานต่อแบบฟรี";
 "Controls" = "การควบคุม";
+"Corner roundness" = "ความโค้งมนของมุม";
 "Could not move to Applications folder" = "ไม่สามารถย้ายไปยังโฟลเดอร์ Applications";
 "Couldn't deactivate that machine" = "ไม่สามารถปิดใช้งานเครื่องนั้น";
 "Couldn't save your license to the macOS Keychain. Please share the details below with the developer." = "ไม่สามารถบันทึกสิทธิ์ใช้งานของคุณไปยังพวงกุญแจของ macOS โปรดแบ่งปันรายละเอียดด้านล่างกับนักพัฒนา";
@@ -165,6 +167,7 @@
 "Not now" = "ไม่ใช่ตอนนี้";
 "OK" = "ตกลง";
 "On Day 15, Pro features revert to the free version." = "ในวันที่ 15 คุณสมบัติ Pro จะกลับไปเป็นเวอร์ชันฟรี";
+"Only applies to the Titles style" = "ใช้ได้เฉพาะกับสไตล์ชื่อเท่านั้น";
 "Only on different screen" = "เฉพาะบนหน้าจอที่ต่างกัน";
 "Open Accessibility Settings…" = "เปิดการตั้งค่าการช่วยการเข้าถึง…";
 "Open Screen Recording Settings…" = "เปิดการตั้งค่าการบันทึกหน้าจอ…";
@@ -176,6 +179,7 @@
 "Pick a machine to deactivate so you can activate here." = "เลือกเครื่องที่จะปิดใช้งานเพื่อให้คุณสามารถเปิดใช้งานที่นี่ได้";
 "Please drag AltTab into the Applications folder manually." = "โปรดลาก AltTab ไปยังโฟลเดอร์ Applications ด้วยตนเอง";
 "Please fill in the form" = "โปรดกรอกแบบฟอร์ม";
+"Preview next to the window list" = "แสดงตัวอย่างข้างรายการหน้าต่าง";
 "Preview selected window" = "แสดงตัวอย่างหน้าต่างที่เลือก";
 "Pro" = "Pro";
 "Pro activated" = "เปิดใช้งาน Pro แล้ว";
@@ -299,6 +303,7 @@
 "Window is minimized" = "หน้าต่างถูกย่อ";
 "Window is on every Space" = "หน้าต่างอยู่บนทุกพื้นที่ทำงาน";
 "Window is on Space %d" = "หน้าต่างอยู่บนพื้นที่ทำงาน %d";
+"Window opacity" = "ความทึบของหน้าต่าง";
 "Window previews" = "ตัวอย่างหน้าต่าง";
 "window switches" = "การสลับหน้าต่าง";
 "Window Title" = "ชื่อหน้าต่าง";

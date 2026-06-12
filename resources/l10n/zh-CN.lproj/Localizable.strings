@@ -59,6 +59,7 @@
 "Auto-install updates periodically" = "定期自动安装更新";
 "Auto-sizing switcher" = "自动调整切换器大小";
 "Automatic activation failed" = "自动激活失败";
+"Background tint" = "背景色调";
 "Brief description of the bug" = "简要描述错误";
 "Brief description of the change" = "简要描述改动";
 "Bundle ID" = "Bundle ID";
@@ -72,6 +73,7 @@
 "Conflicting shortcut" = "快捷键冲突";
 "Continue with Free" = "继续使用免费版";
 "Controls" = "控制";
+"Corner roundness" = "圆角程度";
 "Could not move to Applications folder" = "无法移动到应用程序文件夹";
 "Couldn't deactivate that machine" = "无法停用该设备";
 "Couldn't save your license to the macOS Keychain. Please share the details below with the developer." = "无法将您的许可证保存到 macOS 钥匙串。请将以下详细信息发送给开发者。";
@@ -165,6 +167,7 @@
 "Not now" = "暂不";
 "OK" = "好";
 "On Day 15, Pro features revert to the free version." = "第 15 天，Pro 功能将恢复为免费版。";
+"Only applies to the Titles style" = "仅适用于“标题”样式";
 "Only on different screen" = "仅在不同屏幕上";
 "Open Accessibility Settings…" = "打开辅助功能设置…";
 "Open Screen Recording Settings…" = "打开屏幕录制设置…";
@@ -176,6 +179,7 @@
 "Pick a machine to deactivate so you can activate here." = "请选择一台设备停用，以便在此处激活。";
 "Please drag AltTab into the Applications folder manually." = "请手动将 AltTab 拖动到应用程序文件夹。";
 "Please fill in the form" = "请填写表单";
+"Preview next to the window list" = "在窗口列表旁边显示预览";
 "Preview selected window" = "预览所选窗口";
 "Pro" = "Pro";
 "Pro activated" = "Pro 已激活";
@@ -299,6 +303,7 @@
 "Window is minimized" = "窗口已最小化";
 "Window is on every Space" = "窗口在所有桌面上";
 "Window is on Space %d" = "窗口在桌面 %d 上";
+"Window opacity" = "窗口不透明度";
 "Window previews" = "窗口预览";
 "window switches" = "次窗口切换";
 "Window Title" = "窗口标题";

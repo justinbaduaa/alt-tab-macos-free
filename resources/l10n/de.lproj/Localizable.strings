@@ -59,6 +59,7 @@
 "Auto-install updates periodically" = "Updates regelmäßig automatisch installieren";
 "Auto-sizing switcher" = "Umschalter mit automatischer Größe";
 "Automatic activation failed" = "Automatische Aktivierung fehlgeschlagen";
+"Background tint" = "Hintergrundtönung";
 "Brief description of the bug" = "Kurze Beschreibung des Fehlers";
 "Brief description of the change" = "Kurze Beschreibung der Änderung";
 "Bundle ID" = "Bundle ID";
@@ -72,6 +73,7 @@
 "Conflicting shortcut" = "Kollidierendes Tastenkürzel";
 "Continue with Free" = "Mit der kostenlosen Version fortfahren";
 "Controls" = "Steuerung";
+"Corner roundness" = "Eckenrundung";
 "Could not move to Applications folder" = "Verschieben in den Programme-Ordner fehlgeschlagen";
 "Couldn't deactivate that machine" = "Dieser Computer konnte nicht deaktiviert werden";
 "Couldn't save your license to the macOS Keychain. Please share the details below with the developer." = "Ihre Lizenz konnte nicht im macOS-Schlüsselbund gespeichert werden. Bitte teilen Sie die unten stehenden Details mit dem Entwickler.";
@@ -165,6 +167,7 @@
 "Not now" = "Nicht jetzt";
 "OK" = "OK";
 "On Day 15, Pro features revert to the free version." = "Am Tag 15 werden Pro-Funktionen auf die kostenlose Version zurückgesetzt.";
+"Only applies to the Titles style" = "Gilt nur für den Stil „Titel“";
 "Only on different screen" = "Nur auf anderem Bildschirm";
 "Open Accessibility Settings…" = "Einstellungen für Bedienungshilfen öffnen…";
 "Open Screen Recording Settings…" = "Einstellungen für Bildschirmaufnahme öffnen…";
@@ -176,6 +179,7 @@
 "Pick a machine to deactivate so you can activate here." = "Wählen Sie einen Computer zur Deaktivierung, um hier zu aktivieren.";
 "Please drag AltTab into the Applications folder manually." = "Bitte ziehen Sie AltTab manuell in den Programme-Ordner.";
 "Please fill in the form" = "Bitte füllen Sie das Formular aus";
+"Preview next to the window list" = "Vorschau neben der Fensterliste";
 "Preview selected window" = "Ausgewähltes Fenster in der Vorschau anzeigen";
 "Pro" = "Pro";
 "Pro activated" = "Pro aktiviert";
@@ -299,6 +303,7 @@
 "Window is minimized" = "Fenster minimiert";
 "Window is on every Space" = "Fenster auf jedem Space";
 "Window is on Space %d" = "Fenster auf Space %d";
+"Window opacity" = "Deckkraft des Fensters";
 "Window previews" = "Fenstervorschauen";
 "window switches" = "Fensterwechsel";
 "Window Title" = "Fenstertitel";

@@ -59,6 +59,7 @@
 "Auto-install updates periodically" = "Installa automaticamente gli aggiornamenti";
 "Auto-sizing switcher" = "Selettore a dimensione automatica";
 "Automatic activation failed" = "Attivazione automatica non riuscita";
+"Background tint" = "Tinta dello sfondo";
 "Brief description of the bug" = "Breve descrizione del bug";
 "Brief description of the change" = "Breve descrizione della modifica";
 "Bundle ID" = "Bundle ID";
@@ -72,6 +73,7 @@
 "Conflicting shortcut" = "Scorciatoia in conflitto";
 "Continue with Free" = "Continua con la versione gratuita";
 "Controls" = "Controlli";
+"Corner roundness" = "Arrotondamento degli angoli";
 "Could not move to Applications folder" = "Impossibile spostare nella cartella Applicazioni";
 "Couldn't deactivate that machine" = "Impossibile disattivare quel dispositivo";
 "Couldn't save your license to the macOS Keychain. Please share the details below with the developer." = "Impossibile salvare la tua licenza nel Portachiavi di macOS. Condividi i dettagli qui sotto con lo sviluppatore.";
@@ -165,6 +167,7 @@
 "Not now" = "Non ora";
 "OK" = "OK";
 "On Day 15, Pro features revert to the free version." = "Al giorno 15, le funzionalità Pro tornano alla versione gratuita.";
+"Only applies to the Titles style" = "Si applica solo allo stile Titoli";
 "Only on different screen" = "Solo su schermo diverso";
 "Open Accessibility Settings…" = "Apri Impostazioni di Accessibilità…";
 "Open Screen Recording Settings…" = "Apri Impostazioni di Registrazione schermo…";
@@ -176,6 +179,7 @@
 "Pick a machine to deactivate so you can activate here." = "Scegli un dispositivo da disattivare per poter attivare qui.";
 "Please drag AltTab into the Applications folder manually." = "Trascina AltTab manualmente nella cartella Applicazioni.";
 "Please fill in the form" = "Compila il modulo";
+"Preview next to the window list" = "Anteprima accanto all'elenco delle finestre";
 "Preview selected window" = "Anteprima della finestra selezionata";
 "Pro" = "Pro";
 "Pro activated" = "Pro attivato";
@@ -299,6 +303,7 @@
 "Window is minimized" = "Finestra ridotta a icona";
 "Window is on every Space" = "Finestra in ogni Spazio";
 "Window is on Space %d" = "Finestra nello Spazio %d";
+"Window opacity" = "Opacità della finestra";
 "Window previews" = "Anteprime delle finestre";
 "window switches" = "cambi di finestra";
 "Window Title" = "Titolo finestra";

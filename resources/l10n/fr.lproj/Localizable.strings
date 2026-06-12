@@ -59,6 +59,7 @@
 "Auto-install updates periodically" = "Installer automatiquement les mises à jour";
 "Auto-sizing switcher" = "Sélecteur à taille automatique";
 "Automatic activation failed" = "Échec de l'activation automatique";
+"Background tint" = "Teinte de l'arrière-plan";
 "Brief description of the bug" = "Brève description du bug";
 "Brief description of the change" = "Brève description du changement";
 "Bundle ID" = "Bundle ID";
@@ -72,6 +73,7 @@
 "Conflicting shortcut" = "Raccourci en conflit";
 "Continue with Free" = "Continuer avec la version gratuite";
 "Controls" = "Contrôles";
+"Corner roundness" = "Arrondi des coins";
 "Could not move to Applications folder" = "Impossible de déplacer vers le dossier Applications";
 "Couldn't deactivate that machine" = "Impossible de désactiver cette machine";
 "Couldn't save your license to the macOS Keychain. Please share the details below with the developer." = "Impossible d'enregistrer votre licence dans le Trousseau macOS. Veuillez transmettre les détails ci-dessous au développeur.";
@@ -165,6 +167,7 @@
 "Not now" = "Pas maintenant";
 "OK" = "OK";
 "On Day 15, Pro features revert to the free version." = "Au 15ᵉ jour, les fonctionnalités Pro reviennent à la version gratuite.";
+"Only applies to the Titles style" = "S'applique uniquement au style « Titres »";
 "Only on different screen" = "Uniquement sur un autre écran";
 "Open Accessibility Settings…" = "Ouvrir les réglages d'accessibilité…";
 "Open Screen Recording Settings…" = "Ouvrir les réglages d'enregistrement de l'écran…";
@@ -176,6 +179,7 @@
 "Pick a machine to deactivate so you can activate here." = "Choisissez une machine à désactiver pour pouvoir activer ici.";
 "Please drag AltTab into the Applications folder manually." = "Veuillez glisser AltTab manuellement dans le dossier Applications.";
 "Please fill in the form" = "Veuillez remplir le formulaire";
+"Preview next to the window list" = "Aperçu à côté de la liste des fenêtres";
 "Preview selected window" = "Aperçu de la fenêtre sélectionnée";
 "Pro" = "Pro";
 "Pro activated" = "Pro activé";
@@ -299,6 +303,7 @@
 "Window is minimized" = "Fenêtre réduite";
 "Window is on every Space" = "Fenêtre sur tous les Bureaux";
 "Window is on Space %d" = "Fenêtre sur le Bureau %d";
+"Window opacity" = "Opacité de la fenêtre";
 "Window previews" = "Aperçus de fenêtre";
 "window switches" = "changements de fenêtre";
 "Window Title" = "Titre de fenêtre";

@@ -20,9 +20,6 @@ struct SelectionInputs: Equatable {
     let useLastFocusedRule: Bool
     let restoreDefaultOnSearchClear: Bool
     let bestMatchOnSearchChange: Bool
-    /// True when scroll-to-select is enabled: summoning lands on the current window (index 0 in
-    /// MRU order) instead of pre-cycling to the next one, since the user picks by scrolling
-    var startOnCurrentWindow = false
 }
 
 /// What the kernel recommends. Wrapper translates this into side effects (highlight redraws,
@@ -83,9 +80,6 @@ enum SelectionResolver {
     /// Mirrors `setInitialSelectedAndHoveredWindowIndex` — picks the index, defers reset to wrapper.
     static func initialPickIndex(_ i: SelectionInputs) -> Int? {
         if i.useLastFocusedRule, let idx = getLastFocusedOrderWindowIndex(i.list) {
-            return idx
-        }
-        if i.startOnCurrentWindow, let idx = i.list.indices.first(where: { i.list[$0].visible }) {
             return idx
         }
         // Edge case: top two windows both minimized — land on index 0 rather than cycling past.

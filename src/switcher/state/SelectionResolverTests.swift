@@ -29,15 +29,13 @@ final class SelectionResolverTests: XCTestCase {
                        selectedTarget: String? = nil,
                        useLastFocusedRule: Bool = false,
                        restoreDefaultOnSearchClear: Bool = false,
-                       bestMatchOnSearchChange: Bool = false,
-                       startOnCurrentWindow: Bool = false) -> SelectionInputs {
+                       bestMatchOnSearchChange: Bool = false) -> SelectionInputs {
         SelectionInputs(list: list,
                         selectedIndex: selectedIndex,
                         selectedTarget: selectedTarget,
                         useLastFocusedRule: useLastFocusedRule,
                         restoreDefaultOnSearchClear: restoreDefaultOnSearchClear,
-                        bestMatchOnSearchChange: bestMatchOnSearchChange,
-                        startOnCurrentWindow: startOnCurrentWindow)
+                        bestMatchOnSearchChange: bestMatchOnSearchChange)
     }
 
     // MARK: - A. Initial pick (`selectedTarget == nil`)
@@ -91,27 +89,6 @@ final class SelectionResolverTests: XCTestCase {
             w("other", focusOrder: 2),
         ]
         let i = inputs(list: list, useLastFocusedRule: true)
-        XCTAssertEqual(SelectionResolver.decide(i), .resetThenSelect(1))
-    }
-
-    /// A7. Scroll-to-select enabled — summon lands on the current window (slot 0) instead of
-    /// pre-cycling to slot 1, since the user picks by scrolling.
-    func testInitialPickStartOnCurrentWindow() {
-        let i = inputs(list: [w("a"), w("b")], startOnCurrentWindow: true)
-        XCTAssertEqual(SelectionResolver.decide(i), .resetThenSelect(0))
-    }
-
-    /// A8. Scroll-to-select with slot 0 filtered out — land on the first visible window.
-    func testInitialPickStartOnCurrentWindowSkipsInvisible() {
-        let i = inputs(list: [w("a", visible: false), w("b"), w("c")], startOnCurrentWindow: true)
-        XCTAssertEqual(SelectionResolver.decide(i), .resetThenSelect(1))
-    }
-
-    /// A9. The last-focused rule outranks scroll-to-select: both pick the current window, but
-    /// in non-MRU ordering only `lastFocusOrder` identifies it.
-    func testInitialPickLastFocusedRuleOutranksStartOnCurrentWindow() {
-        let list = [w("a", focusOrder: 5), w("b", focusOrder: 0), w("c", focusOrder: 3)]
-        let i = inputs(list: list, useLastFocusedRule: true, startOnCurrentWindow: true)
         XCTAssertEqual(SelectionResolver.decide(i), .resetThenSelect(1))
     }
 

@@ -26,11 +26,9 @@ the #5665 fix (before it, a background app finishing launch could yank the highl
 6. **Target gone** → adapt to the closest visible window.
 
 Initial-pick rules: with the last-focused rule, pick the visible non-windowless window with the lowest
-`lastFocusOrder`; with scroll-to-select enabled (`startOnCurrentWindow`), land on the first visible
-window (the current one in MRU order) instead of pre-cycling — the user picks by scrolling; the
-both-top-minimized edge lands on index 0; otherwise cycle from 0 to the next visible. Windowless app
-entries and invisible windows are skipped when scanning. `findTarget` only matches a target id that
-is currently visible.
+`lastFocusOrder`; the both-top-minimized edge lands on index 0; otherwise cycle from 0 to the next
+visible. Windowless app entries and invisible windows are skipped when scanning. `findTarget` only
+matches a target id that is currently visible.
 
 ## Test scenarios
 
@@ -45,9 +43,6 @@ C target removed · D search mode · E edge cases · plus direct helper-kernel c
 - **testInitialPickUseLastFocusedRule** — alpha/space ordering → pick lowest `lastFocusOrder`.
 - **testInitialPickAllInvisible** — everything filtered out → `clearTargetAndHover`.
 - **testInitialPickSkipsWindowlessInLastFocusedRule** — windowless entries skipped when scanning.
-- **testInitialPickStartOnCurrentWindow** — scroll-to-select enabled → land on slot 0, no pre-cycle.
-- **testInitialPickStartOnCurrentWindowSkipsInvisible** — slot 0 filtered out → first visible slot.
-- **testInitialPickLastFocusedRuleOutranksStartOnCurrentWindow** — non-MRU ordering still picks by lowest `lastFocusOrder`.
 
 ### B. Preserve target across reorders (the #5665 regression cluster)
 - **testPreserveTargetSameIndex** — target still at its index → `selectAt` unchanged.

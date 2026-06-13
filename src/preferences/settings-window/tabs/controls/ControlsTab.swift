@@ -29,6 +29,7 @@ class ControlsTab {
 
     static var shortcutsWhenActiveSheet: ShortcutsWhenActiveSheet!
     static var additionalControlsSheet: AdditionalControlsSheet!
+    static var appBindingsSheet: AppBindingsSheet!
 
     /// Map from a tab-segment `NSSegmentedControl` (Filtering / Appearance / Ordering) to the
     /// per-segment list of searchable strings. Consulted by
@@ -113,6 +114,7 @@ class ControlsTab {
         staticManagedShortcutPreferences.forEach { applyShortcutPreference($0) }
         applyArrowKeysPreferenceWithoutDialogs()
         applyVimKeysPreferenceWithoutDialogs()
+        refreshAppBindingShortcuts()
     }
 
     static func initTab() -> NSView {
@@ -124,8 +126,9 @@ class ControlsTab {
 
         let shortcutsView = makeShortcutsView()
         let additionalControlsButton = NSButton(title: NSLocalizedString("Additional controls…", comment: ""), target: self, action: #selector(showAdditionalControlsSettings))
+        let appBindingsButton = NSButton(title: NSLocalizedString("App bindings…", comment: ""), target: self, action: #selector(showAppBindingsSettings))
         let shortcutsButton = NSButton(title: NSLocalizedString("Shortcuts when active…", comment: ""), target: self, action: #selector(showShortcutsSettings))
-        let tools = StackView([additionalControlsButton, shortcutsButton], .horizontal)
+        let tools = StackView([additionalControlsButton, appBindingsButton, shortcutsButton], .horizontal)
         let view = TableGroupSetView(originalViews: [shortcutsView], toolsViews: [tools], padding: 0, bottomPadding: 0, othersAlignment: .leading, toolsAlignment: .trailing)
 
         // Sheets are built lazily on first show. Pre-build search visibility is provided by
@@ -159,6 +162,7 @@ class ControlsTab {
         }
         shortcutsWhenActiveSheet = nil
         additionalControlsSheet = nil
+        appBindingsSheet = nil
         arrowKeysCheckbox = nil
         vimKeysCheckbox = nil
         shortcutControls.removeAll()
@@ -214,6 +218,12 @@ class ControlsTab {
             applyArrowKeysPreferenceWithoutDialogs()
         case "vimKeysEnabled" where vimKeysCheckbox == nil:
             applyVimKeysPreferenceWithoutDialogs()
+        case "appBindingsEnabled":
+            refreshAppBindingShortcuts()
+            appBindingsSheet?.refresh()
+        case let k where isAppBindingBundleIdKey(k):
+            refreshAppBindingShortcuts()
+            appBindingsSheet?.refresh()
         default:
             break
         }
@@ -748,6 +758,10 @@ class ControlsTab {
         })
     }
 
+    private static func isAppBindingBundleIdKey(_ key: String) -> Bool {
+        return (0..<Preferences.appBindingCount).contains { key == Preferences.indexToName("appBindingBundleId", $0) }
+    }
+
     // MARK: - Shortcut registry (global keyboard binding — unchanged from the old code)
 
     private static func applyActiveShortcutPreferences() {
@@ -771,6 +785,19 @@ class ControlsTab {
     @objc static func showAdditionalControlsSettings() {
         if additionalControlsSheet == nil { additionalControlsSheet = AdditionalControlsSheet() }
         SettingsWindow.shared.beginSheetWithSearchHighlight(additionalControlsSheet)
+    }
+
+    @objc static func showAppBindingsSettings() {
+        if appBindingsSheet == nil { appBindingsSheet = AppBindingsSheet() }
+        SettingsWindow.shared.beginSheetWithSearchHighlight(appBindingsSheet)
+    }
+
+    static func refreshAppBindingShortcuts() {
+        AppBindings.shortcutDefinitions.forEach {
+            removeShortcutIfExists($0.id)
+            guard Preferences.appBindingsEnabled, AppBindings.bundleId($0.index) != nil else { return }
+            addShortcut(.down, .local, Shortcut(keyEquivalent: $0.keyEquivalent)!, $0.id, nil)
+        }
     }
 
     private static func addShortcut(_ triggerPhase: ShortcutTriggerPhase, _ scope: ShortcutScope, _ shortcut: Shortcut, _ controlId: String, _ index: Int?) {
@@ -942,6 +969,9 @@ class ControlsTab {
     static func conflictLabel(_ id: String) -> String? {
         if arrowKeys.contains(id) { return NSLocalizedString("Arrow keys", comment: "") }
         if vimKeyActions.values.contains(id) { return NSLocalizedString("Vim keys", comment: "") }
+        if let index = AppBindings.index(fromShortcutId: id) {
+            return NSLocalizedString("App binding", comment: "") + " " + AppBindings.shortcutDefinitions[index].keyEquivalent
+        }
         if id.hasPrefix("holdShortcut") || id.hasPrefix("nextWindowShortcut") {
             return shortcutTitle(Preferences.nameToIndex(id)) + " - " + ShortcutEditor.triggerLabel
         }

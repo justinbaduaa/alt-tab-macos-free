@@ -179,6 +179,15 @@ class ControlsTab {
     ]
     static var shortcuts = defaultShortcuts
 
+    static func refreshAppBindingShortcuts() {
+        AppBindings.shortcutDefinitions.forEach {
+            shortcuts.removeValue(forKey: $0.id)
+            if Preferences.appBindingsEnabled && !Preferences.appBindingBundleIds[$0.index].isEmpty {
+                shortcuts[$0.id] = ATShortcut(Shortcut(keyEquivalent: $0.keyEquivalent)!, $0.id, .local, .down)
+            }
+        }
+    }
+
     static func executeAction(_ action: String) {
         shortcutsActionsTriggered.append(action)
         if action.starts(with: "holdShortcut") {
@@ -217,6 +226,8 @@ class Logger {
 
 class Preferences {
     static var shortcutStyle: ShortcutStylePreference = .focusOnRelease
+    static var appBindingsEnabled = false
+    static var appBindingBundleIds = Array(repeating: "", count: 10)
     static var holdShortcut = ["⌥", "⌥", "⌥"]
     static let minShortcutCount = 1
     static let maxShortcutCount = 9
@@ -235,6 +246,21 @@ class Preferences {
     static func effectiveShortcutStyle(_ index: Int) -> ShortcutStylePreference {
         return shortcutStyle
     }
+}
+
+enum AppBindings {
+    static let shortcutDefinitions: [(id: String, keyEquivalent: String, index: Int)] = [
+        ("appBindingShortcut", "1", 0),
+        ("appBindingShortcut2", "2", 1),
+        ("appBindingShortcut3", "3", 2),
+        ("appBindingShortcut4", "4", 3),
+        ("appBindingShortcut5", "5", 4),
+        ("appBindingShortcut6", "6", 5),
+        ("appBindingShortcut7", "7", 6),
+        ("appBindingShortcut8", "8", 7),
+        ("appBindingShortcut9", "9", 8),
+        ("appBindingShortcut10", "0", 9),
+    ]
 }
 
 enum ShortcutStylePreference: CaseIterable {

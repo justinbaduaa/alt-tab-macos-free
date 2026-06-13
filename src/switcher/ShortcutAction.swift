@@ -66,6 +66,75 @@ enum ShortcutActions {
         }
         if id.hasPrefix("nextWindowShortcut") {
             App.showUiOrCycleSelection(Preferences.nameToIndex(id), false)
+            return
+        }
+        if let appBindingIndex = AppBindings.index(fromShortcutId: id) {
+            AppBindings.activate(appBindingIndex)
+        }
+    }
+}
+
+struct AppBindingShortcutDefinition {
+    let id: String
+    let keyEquivalent: String
+    let index: Int
+}
+
+enum AppBindings {
+    static let shortcutDefinitions: [AppBindingShortcutDefinition] = keyEquivalents.enumerated().map {
+        AppBindingShortcutDefinition(id: Preferences.indexToName("appBindingShortcut", $0.offset), keyEquivalent: $0.element, index: $0.offset)
+    }
+
+    private static let keyEquivalents = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"]
+
+    static func index(fromShortcutId id: String) -> Int? {
+        guard id.hasPrefix("appBindingShortcut") else { return nil }
+        let index = Preferences.nameToIndex(id)
+        guard (0..<Preferences.appBindingCount).contains(index) else { return nil }
+        return index
+    }
+
+    static func bundleId(_ index: Int) -> String? {
+        let bundleId = Preferences.appBindingBundleId(index)
+        return bundleId.isEmpty ? nil : bundleId
+    }
+
+    static func activate(_ index: Int) {
+        guard let bundleId = bundleId(index) else { return }
+        guard !focusExistingWindow(bundleId) else { return }
+        guard !activateRunningApp(bundleId) else { return }
+        launchApp(bundleId)
+    }
+
+    private static func focusExistingWindow(_ bundleId: String) -> Bool {
+        guard let window = Windows.list.first(where: { $0.application.bundleIdentifier == bundleId && $0.shouldShowTheUser }) else { return false }
+        App.hideUi(true)
+        window.focus()
+        return true
+    }
+
+    private static func activateRunningApp(_ bundleId: String) -> Bool {
+        guard let app = NSRunningApplication.runningApplications(withBundleIdentifier: bundleId).first else { return false }
+        App.hideUi(true)
+        app.activate(options: .activateAllWindows)
+        return true
+    }
+
+    private static func launchApp(_ bundleId: String) {
+        guard let url = NSWorkspace.shared.urlForApplication(withBundleIdentifier: bundleId) else {
+            NSSound.beep()
+            return
+        }
+        App.hideUi(true)
+        if #available(macOS 10.15, *) {
+            NSWorkspace.shared.openApplication(at: url, configuration: NSWorkspace.OpenConfiguration()) { app, error in
+                if error != nil { NSSound.beep(); return }
+                app?.activate(options: .activateAllWindows)
+            }
+            return
+        }
+        if (try? NSWorkspace.shared.launchApplication(at: url, configuration: [:])) == nil {
+            NSSound.beep()
         }
     }
 }

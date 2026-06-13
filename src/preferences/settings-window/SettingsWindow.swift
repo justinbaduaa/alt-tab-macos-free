@@ -959,6 +959,7 @@ class SettingsWindow: NSWindow {
         if action == #selector(AppearanceTab.showAnimationsSheet) { return AppearanceTab.animationsSheet }
         if action == #selector(ControlsTab.showShortcutsSettings) { return ControlsTab.shortcutsWhenActiveSheet }
         if action == #selector(ControlsTab.showAdditionalControlsSettings) { return ControlsTab.additionalControlsSheet }
+        if action == #selector(ControlsTab.showAppBindingsSettings) { return ControlsTab.appBindingsSheet }
         return nil
     }
 

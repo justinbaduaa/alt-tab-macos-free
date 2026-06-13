@@ -52,8 +52,12 @@ class Preferences {
             "captureWindowsInBackground": "true",
             "screenRecordingPermissionSkipped": "false",
             "trackpadHapticFeedbackEnabled": "true",
+            "appBindingsEnabled": "false",
             "settingsWindowShownOnFirstLaunch": "false",
         ]
+        (0..<appBindingCount).forEach { index in
+            values[indexToName("appBindingBundleId", index)] = ""
+        }
         (0..<maxShortcutCount).forEach { index in
             values[indexToName("holdShortcut", index)] = defaultShortcut("⌥")
             values[indexToName("nextWindowShortcut", index)] = defaultShortcut(index == 0 ? "⇥" : (index == 1 ? keyAboveTabDependingOnInputSource() : ""))
@@ -119,6 +123,8 @@ class Preferences {
     static var scrollToSelectDirection: ScrollToSelectDirection { CachedUserDefaults.macroPref("scrollToSelectDirection", ScrollToSelectDirection.allCases) }
     static var cursorFollowFocus: CursorFollowFocus { CachedUserDefaults.macroPref("cursorFollowFocus", CursorFollowFocus.allCases) }
     static var trackpadHapticFeedbackEnabled: Bool { CachedUserDefaults.bool("trackpadHapticFeedbackEnabled") }
+    static var appBindingsEnabled: Bool { CachedUserDefaults.bool("appBindingsEnabled") }
+    static var appBindingBundleIds: [String] { (0..<appBindingCount).map { appBindingBundleId($0) } }
     static var hideColoredCircles: Bool { CachedUserDefaults.bool("hideColoredCircles") }
     static var windowDisplayDelay: DispatchTimeInterval { DispatchTimeInterval.milliseconds(CachedUserDefaults.int("windowDisplayDelay")) }
     /// 0...1 multiplier applied to the theme's corner radii (1 = theme default roundness)
@@ -175,6 +181,7 @@ class Preferences {
 
     static let minShortcutCount = 1
     static let maxShortcutCount = 9
+    static let appBindingCount = 10
     static var shortcutCount: Int {
         max(minShortcutCount, min(maxShortcutCount, CachedUserDefaults.int("shortcutCount")))
     }
@@ -223,6 +230,10 @@ class Preferences {
 
     static func shortcut(_ key: String) -> Shortcut? {
         CachedUserDefaults.shortcut(key)
+    }
+
+    static func appBindingBundleId(_ index: Int) -> String {
+        CachedUserDefaults.string(indexToName("appBindingBundleId", index)).trimmingCharacters(in: .whitespacesAndNewlines)
     }
 
     static func set<T>(_ key: String, _ value: T, _ notify: Bool = true) where T: Encodable {

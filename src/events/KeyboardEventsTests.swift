@@ -160,11 +160,45 @@ final class KeyboardEventsUtilsTests: XCTestCase {
         XCTAssertEqual(ControlsTab.shortcutsActionsTriggered, ["nextWindowShortcut", "nextWindowShortcut2", "holdShortcut2"])
     }
 
+    func testAppBindingShortcutFiresWhileSwitcherActiveAndEnabled() throws {
+        resetState()
+        Preferences.appBindingsEnabled = true
+        Preferences.appBindingBundleIds[0] = "com.apple.MobileSMS"
+        ControlsTab.refreshAppBindingShortcuts()
+        SwitcherSession.current = SwitcherSession()
+        ModifierFlags.current = [.option]
+        handleKeyboardEvent(nil, nil, keycodeMap["1"], [.option], false)
+        XCTAssertEqual(ControlsTab.shortcutsActionsTriggered, ["appBindingShortcut"])
+    }
+
+    func testAppBindingShortcutDoesNotFireWhenSlotIsUnassigned() throws {
+        resetState()
+        Preferences.appBindingsEnabled = true
+        ControlsTab.refreshAppBindingShortcuts()
+        SwitcherSession.current = SwitcherSession()
+        ModifierFlags.current = [.option]
+        handleKeyboardEvent(nil, nil, keycodeMap["1"], [.option], false)
+        XCTAssertEqual(ControlsTab.shortcutsActionsTriggered, [])
+    }
+
+    func testAppBindingShortcutDoesNotFireWhenDisabled() throws {
+        resetState()
+        Preferences.appBindingsEnabled = false
+        ControlsTab.refreshAppBindingShortcuts()
+        SwitcherSession.current = SwitcherSession()
+        ModifierFlags.current = [.option]
+        handleKeyboardEvent(nil, nil, keycodeMap["1"], [.option], false)
+        XCTAssertEqual(ControlsTab.shortcutsActionsTriggered, [])
+    }
+
     private func resetState() {
         SwitcherSession.current = nil
         Preferences.shortcutStyle = .focusOnRelease
+        Preferences.appBindingsEnabled = false
+        Preferences.appBindingBundleIds = Array(repeating: "", count: 10)
         ControlsTab.shortcuts.values.forEach { $0.state = .up }
         ControlsTab.shortcutsActionsTriggered = []
+        ControlsTab.refreshAppBindingShortcuts()
     }
 
     // Issue #5585: Escape (kVK_Escape = 53) reaches the matcher via the cghid event tap in

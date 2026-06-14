@@ -63,6 +63,7 @@ class App: AppCenterApplication {
     static func hideUi(_ keepPreview: Bool = false) {
         Logger.info { "active:\(SwitcherSession.isActive)" }
         guard SwitcherSession.current != nil else { return } // already hidden
+        AppBindings.clearPendingTarget()
         SwitcherSession.current = nil
         UsageStats.resetSession()
         TilesView.endSearchSession()
@@ -248,6 +249,9 @@ class App: AppCenterApplication {
     static func cycleSelection(_ direction: Direction, allowWrap: Bool = true) {
         (TilesView.scrollView?.documentView as? TilesDocumentView)?.cancelDraggingTimer()
         CursorEvents.resetDeadzone()
+        if AppBindings.clearSelectionForNavigation() {
+            refreshUi(true)
+        }
         if direction == .up || direction == .down {
             TilesView.navigateUpOrDown(direction, allowWrap: allowWrap)
         } else {

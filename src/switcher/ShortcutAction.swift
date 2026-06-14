@@ -69,7 +69,7 @@ enum ShortcutActions {
             return
         }
         if let appBindingIndex = AppBindings.index(fromShortcutId: id) {
-            AppBindings.activate(appBindingIndex)
+            AppBindings.select(appBindingIndex)
         }
     }
 }
@@ -99,11 +99,72 @@ enum AppBindings {
         return bundleId.isEmpty ? nil : bundleId
     }
 
-    static func activate(_ index: Int) {
-        guard let bundleId = bundleId(index) else { return }
+    static func select(_ index: Int) {
+        guard let session = SwitcherSession.current, let bundleId = bundleId(index) else { return }
+        if session.appBindingPendingWindowId != nil {
+            _ = clearSelectionForNavigation()
+        }
+        let matches = matchingVisibleWindowIndexes(bundleId)
+        guard !matches.isEmpty else {
+            selectPendingApp(bundleId, session)
+            return
+        }
+        clearPendingTarget()
+        let sameBinding = session.appBindingBundleId == bundleId
+        let selectedIndex = session.selectedIndex
+        let next = sameBinding && matches.contains(selectedIndex) ? matches[(matches.firstIndex(of: selectedIndex)! + 1) % matches.count] : matches[0]
+        session.appBindingBundleId = bundleId
+        Windows.updateSelectedAndHoveredWindowIndex(next)
+    }
+
+    static func clearSelectionForNavigation() -> Bool {
+        guard let session = SwitcherSession.current else { return false }
+        session.appBindingBundleId = nil
+        guard let previousIndex = session.appBindingPreviousSelectedIndex else {
+            clearPendingTarget()
+            return false
+        }
+        clearPendingTarget()
+        session.selectedIndex = min(previousIndex, max(Windows.list.count - 1, 0))
+        session.selectedTarget = Windows.list.indices.contains(session.selectedIndex) ? Windows.list[session.selectedIndex].id : nil
+        return true
+    }
+
+    static func clearPendingTarget() {
+        guard let session = SwitcherSession.current, let pendingWindowId = session.appBindingPendingWindowId else { return }
+        Windows.removeAppBindingPendingWindow(pendingWindowId)
+        session.appBindingPendingWindowId = nil
+        session.appBindingPreviousSelectedIndex = nil
+    }
+
+    static func activateBundleId(_ bundleId: String) {
         guard !focusExistingWindow(bundleId) else { return }
         guard !activateRunningApp(bundleId) else { return }
         launchApp(bundleId)
+    }
+
+    private static func matchingVisibleWindowIndexes(_ bundleId: String) -> [Int] {
+        Windows.list.enumerated().compactMap {
+            $0.element.application.bundleIdentifier == bundleId && !$0.element.isWindowlessApp && Windows.shouldDisplay($0.element) ? $0.offset : nil
+        }
+    }
+
+    private static func selectPendingApp(_ bundleId: String, _ session: SwitcherSession) {
+        guard let url = NSWorkspace.shared.urlForApplication(withBundleIdentifier: bundleId) else {
+            NSSound.beep()
+            return
+        }
+        let previousIndex = session.appBindingPreviousSelectedIndex ?? session.selectedIndex
+        clearPendingTarget()
+        let window = Window(appBindingBundleId: bundleId, appUrl: url)
+        session.appBindingBundleId = bundleId
+        session.appBindingPreviousSelectedIndex = previousIndex
+        session.appBindingPendingWindowId = window.id
+        session.selectedIndex = 0
+        session.selectedTarget = window.id
+        session.hoveredIndex = nil
+        Windows.insertAppBindingPendingWindow(window)
+        App.refreshUi(true)
     }
 
     private static func focusExistingWindow(_ bundleId: String) -> Bool {

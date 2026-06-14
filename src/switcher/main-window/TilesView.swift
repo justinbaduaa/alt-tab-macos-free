@@ -57,6 +57,9 @@ class TilesView {
     }
 
     static func toggleSearchModeFromShortcut() {
+        if AppBindings.clearSelectionForNavigation() {
+            App.refreshUi(true)
+        }
         switch SearchModeResolver.toggle(mode: searchMode) {
             case .enterEditing: enableSearchEditing()
             case .disable: disableSearchMode()
@@ -181,6 +184,9 @@ class TilesView {
     private static func updateSearchQuery(_ query: String) {
         if (SwitcherSession.current?.searchQuery ?? "") == query { return }
         if !query.isEmpty { UsageStats.recordSearchIfFirst() }
+        if AppBindings.clearSelectionForNavigation() {
+            App.refreshUi(true)
+        }
         clearHover()
         Windows.updateSearchQuery(query)
         stopKeyRepeatTimers()

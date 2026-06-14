@@ -108,6 +108,21 @@ class Application: NSObject {
         ]
     }
 
+    init(appBindingBundleId: String, bundleURL: URL) {
+        runningApplication = NSRunningApplication.current
+        let bundle = Bundle(url: bundleURL)
+        let name = bundle?.object(forInfoDictionaryKey: "CFBundleDisplayName") as? String
+            ?? bundle?.object(forInfoDictionaryKey: "CFBundleName") as? String
+            ?? FileManager.default.displayName(atPath: bundleURL.path)
+        state = ApplicationState(pid: -1, bundleIdentifier: appBindingBundleId, localizedName: name, isHidden: false)
+        hasBeenActiveOnce = false
+        self.bundleURL = bundleURL
+        executableURL = nil
+        icon = Application.appIconWithoutPadding(NSWorkspace.shared.icon(forFile: bundleURL.path))
+        debugId = "(app-binding:\(appBindingBundleId))"
+        super.init()
+    }
+
     deinit {
         Logger.info { self.debugId }
         // `NSRunningApplication` KVO removal can throw NSInternalInconsistencyException

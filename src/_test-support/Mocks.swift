@@ -131,6 +131,39 @@ class App {
     }
     static let app = AppMock()
     static let bundleIdentifier = "com.lwouis.alt-tab-macos"
+    static var focusedBundleIds = [String]()
+
+    static func focusTarget() {
+        if let window = Windows.selectedWindow() {
+            focusedBundleIds.append(window.bundleId)
+        }
+        SwitcherSession.current = nil
+    }
+}
+
+struct MockWindow {
+    let bundleId: String
+    let shouldShowTheUser: Bool
+    let isWindowlessApp: Bool
+
+    init(bundleId: String, shouldShowTheUser: Bool = true, isWindowlessApp: Bool = false) {
+        self.bundleId = bundleId
+        self.shouldShowTheUser = shouldShowTheUser
+        self.isWindowlessApp = isWindowlessApp
+    }
+}
+
+class Windows {
+    static var list = [MockWindow]()
+
+    static func selectedWindow() -> MockWindow? {
+        guard let session = SwitcherSession.current, session.selectedIndex < list.count else { return nil }
+        return list[session.selectedIndex]
+    }
+
+    static func select(_ index: Int) {
+        SwitcherSession.current?.selectedIndex = index
+    }
 }
 
 class TilesPanel {
@@ -191,7 +224,7 @@ class ControlsTab {
     static func executeAction(_ action: String) {
         shortcutsActionsTriggered.append(action)
         if action.starts(with: "holdShortcut") {
-            SwitcherSession.current = nil
+            App.focusTarget()
         }
         if action.starts(with: "nextWindowShortcut") {
             let session = SwitcherSession.current ?? {
@@ -199,7 +232,14 @@ class ControlsTab {
                 SwitcherSession.current = new
                 return new
             }()
+            AppBindings.clearSelectionForNavigation()
             session.shortcutIndex = Preferences.nameToIndex(action)
+            if !Windows.list.isEmpty {
+                session.selectedIndex = (session.selectedIndex + 1) % Windows.list.count
+            }
+        }
+        if let index = AppBindings.index(fromShortcutId: action) {
+            AppBindings.select(index)
         }
     }
 
@@ -261,6 +301,47 @@ enum AppBindings {
         ("appBindingShortcut9", "9", 8),
         ("appBindingShortcut10", "0", 9),
     ]
+
+    static func index(fromShortcutId id: String) -> Int? {
+        guard id.hasPrefix("appBindingShortcut") else { return nil }
+        let index = Preferences.nameToIndex(id)
+        guard (0..<Preferences.appBindingBundleIds.count).contains(index) else { return nil }
+        return index
+    }
+
+    static func select(_ index: Int) {
+        guard let session = SwitcherSession.current else { return }
+        let bundleId = Preferences.appBindingBundleIds[index]
+        let matches = Windows.list.enumerated().compactMap {
+            $0.element.bundleId == bundleId && $0.element.shouldShowTheUser && !$0.element.isWindowlessApp ? $0.offset : nil
+        }
+        guard !matches.isEmpty else {
+            if session.appBindingPendingWindowId == nil {
+                session.appBindingPreviousSelectedIndex = session.selectedIndex
+            }
+            session.appBindingBundleId = bundleId
+            session.appBindingPendingWindowId = "app-binding-\(bundleId)"
+            session.selectedIndex = 0
+            Windows.list.insert(MockWindow(bundleId: bundleId, isWindowlessApp: true), at: 0)
+            return
+        }
+        let selectedIndex = session.selectedIndex
+        let sameBinding = session.appBindingBundleId == bundleId
+        session.appBindingBundleId = bundleId
+        let next = sameBinding && matches.contains(selectedIndex) ? matches[(matches.firstIndex(of: selectedIndex)! + 1) % matches.count] : matches[0]
+        Windows.select(next)
+    }
+
+    static func clearSelectionForNavigation() {
+        guard let session = SwitcherSession.current else { return }
+        session.appBindingBundleId = nil
+        if session.appBindingPendingWindowId != nil || Windows.list.first?.isWindowlessApp == true {
+            Windows.list.removeFirst()
+            session.selectedIndex = session.appBindingPreviousSelectedIndex ?? 0
+            session.appBindingPreviousSelectedIndex = nil
+            session.appBindingPendingWindowId = nil
+        }
+    }
 }
 
 enum ShortcutStylePreference: CaseIterable {

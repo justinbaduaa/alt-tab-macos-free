@@ -21,4 +21,7 @@ final class SwitcherSession {
     var hoveredIndex: Int?
     var selectedTarget: String?
     var searchQuery: String = ""
+    var appBindingBundleId: String?
+    var appBindingPreviousSelectedIndex: Int?
+    var appBindingPendingWindowId: String?
 }

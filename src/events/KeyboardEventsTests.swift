@@ -160,15 +160,77 @@ final class KeyboardEventsUtilsTests: XCTestCase {
         XCTAssertEqual(ControlsTab.shortcutsActionsTriggered, ["nextWindowShortcut", "nextWindowShortcut2", "holdShortcut2"])
     }
 
-    func testAppBindingShortcutFiresWhileSwitcherActiveAndEnabled() throws {
+    func testAppBindingShortcutSelectsFirstMatchingWindowWithoutFocusingImmediately() throws {
         resetState()
         Preferences.appBindingsEnabled = true
         Preferences.appBindingBundleIds[0] = "com.apple.MobileSMS"
+        Windows.list = [
+            MockWindow(bundleId: "com.apple.finder"),
+            MockWindow(bundleId: "com.apple.MobileSMS"),
+            MockWindow(bundleId: "com.apple.MobileSMS"),
+        ]
         ControlsTab.refreshAppBindingShortcuts()
         SwitcherSession.current = SwitcherSession()
         ModifierFlags.current = [.option]
         handleKeyboardEvent(nil, nil, keycodeMap["1"], [.option], false)
         XCTAssertEqual(ControlsTab.shortcutsActionsTriggered, ["appBindingShortcut"])
+        XCTAssertEqual(SwitcherSession.current?.selectedIndex, 1)
+        XCTAssertEqual(App.focusedBundleIds, [])
+    }
+
+    func testAppBindingShortcutCyclesOnlyMatchingWindows() throws {
+        resetState()
+        Preferences.appBindingsEnabled = true
+        Preferences.appBindingBundleIds[0] = "com.apple.MobileSMS"
+        Windows.list = [
+            MockWindow(bundleId: "com.apple.MobileSMS"),
+            MockWindow(bundleId: "com.apple.finder"),
+            MockWindow(bundleId: "com.apple.MobileSMS"),
+        ]
+        ControlsTab.refreshAppBindingShortcuts()
+        SwitcherSession.current = SwitcherSession()
+        ModifierFlags.current = [.option]
+        handleKeyboardEvent(nil, nil, keycodeMap["1"], [.option], false)
+        XCTAssertEqual(SwitcherSession.current?.selectedIndex, 0)
+        handleKeyboardEvent(nil, nil, keycodeMap["1"], [.option], true)
+        XCTAssertEqual(SwitcherSession.current?.selectedIndex, 2)
+        handleKeyboardEvent(nil, nil, keycodeMap["1"], [.option], true)
+        XCTAssertEqual(SwitcherSession.current?.selectedIndex, 0)
+    }
+
+    func testAppBindingShortcutCommitsOnHoldReleaseEvenWhenReleaseStyleDoesNothing() throws {
+        resetState()
+        Preferences.shortcutStyle = .doNothingOnRelease
+        Preferences.appBindingsEnabled = true
+        Preferences.appBindingBundleIds[0] = "com.apple.MobileSMS"
+        Windows.list = [MockWindow(bundleId: "com.apple.MobileSMS")]
+        ControlsTab.refreshAppBindingShortcuts()
+        SwitcherSession.current = SwitcherSession()
+        ModifierFlags.current = [.option]
+        handleKeyboardEvent(nil, nil, keycodeMap["1"], [.option], false)
+        ModifierFlags.current = []
+        handleKeyboardEvent(nil, nil, nil, [], false)
+        XCTAssertEqual(App.focusedBundleIds, ["com.apple.MobileSMS"])
+        XCTAssertNil(SwitcherSession.current)
+    }
+
+    func testNormalCyclingClearsPendingAppBindingTarget() throws {
+        resetState()
+        Preferences.appBindingsEnabled = true
+        Preferences.appBindingBundleIds[0] = "com.apple.MobileSMS"
+        Windows.list = [
+            MockWindow(bundleId: "com.apple.finder"),
+            MockWindow(bundleId: "com.apple.Safari"),
+        ]
+        ControlsTab.refreshAppBindingShortcuts()
+        SwitcherSession.current = SwitcherSession()
+        ModifierFlags.current = [.option]
+        handleKeyboardEvent(nil, nil, keycodeMap["1"], [.option], false)
+        XCTAssertEqual(SwitcherSession.current?.selectedIndex, 0)
+        XCTAssertEqual(Windows.list.map(\.bundleId), ["com.apple.MobileSMS", "com.apple.finder", "com.apple.Safari"])
+        handleKeyboardEvent(KeyboardEventsTestable.globalShortcutsIds["nextWindowShortcut"], .down, nil, nil, false)
+        XCTAssertEqual(Windows.list.map(\.bundleId), ["com.apple.finder", "com.apple.Safari"])
+        XCTAssertEqual(SwitcherSession.current?.selectedIndex, 1)
     }
 
     func testAppBindingShortcutDoesNotFireWhenSlotIsUnassigned() throws {
@@ -196,6 +258,8 @@ final class KeyboardEventsUtilsTests: XCTestCase {
         Preferences.shortcutStyle = .focusOnRelease
         Preferences.appBindingsEnabled = false
         Preferences.appBindingBundleIds = Array(repeating: "", count: 10)
+        Windows.list = []
+        App.focusedBundleIds = []
         ControlsTab.shortcuts.values.forEach { $0.state = .up }
         ControlsTab.shortcutsActionsTriggered = []
         ControlsTab.refreshAppBindingShortcuts()

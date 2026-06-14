@@ -36,6 +36,7 @@ class Window {
     var swAppResults: [SWResult] = []
     var swTitleResults: [SWResult] = []
     var swBestSimilarity = 0.0
+    var isAppBindingPending: Bool { state.id.hasPrefix("app-binding-") }
 
     /// Forwards every `WindowState` field by name — `window.title` resolves to `state.title`,
     /// `window.isFullscreen = true` writes through. Replaces a stack of one-per-field computed
@@ -83,6 +84,21 @@ class Window {
         debugId = "\(application.debugId) (title:\(self.title))"
         // fetch app icon only if we display that app in the switcher
         application.fetchAppIcon()
+        Logger.debug { self.debugId }
+    }
+
+    init(appBindingBundleId: String, appUrl: URL) {
+        let application = Application(appBindingBundleId: appBindingBundleId, bundleURL: appUrl)
+        state = WindowState(
+            id: "app-binding-\(appBindingBundleId)", isInvisible: false, isWindowlessApp: true,
+            isFullscreen: false, isMinimized: false, isTabbed: false,
+            isOnAllSpaces: false, spaceIds: [CGSSpaceID.max], spaceIndexes: [SpaceIndex.max],
+            lastFocusOrder: .zero, creationOrder: .zero, title: "")
+        self.application = application
+        state.title = application.localizedName ?? ""
+        Window.globalCreationCounter += 1
+        state.creationOrder = Window.globalCreationCounter
+        debugId = "\(application.debugId) (title:\(state.title))"
         Logger.debug { self.debugId }
     }
 
@@ -243,6 +259,11 @@ class Window {
     }
 
     func focus() {
+        if isAppBindingPending, let bundleId = application.bundleIdentifier {
+            AppBindings.activateBundleId(bundleId)
+            WindowThumbnails.previewSelectedIfNeeded()
+            return
+        }
         if let altTabWindow = altTabWindow() {
             App.shared.activate(ignoringOtherApps: true)
             altTabWindow.makeKeyAndOrderFront(nil)

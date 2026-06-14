@@ -8,7 +8,8 @@ class Windows {
     private static var shouldRestoreDefaultSelectionOnSearchClear = false
 
     static func shouldDisplay(_ window: Window) -> Bool {
-        window.shouldShowTheUser && Search.matches(window, query: (SwitcherSession.current?.searchQuery ?? ""))
+        if window.isAppBindingPending { return true }
+        return window.shouldShowTheUser && Search.matches(window, query: (SwitcherSession.current?.searchQuery ?? ""))
     }
 
     static func updateSearchQuery(_ query: String) {
@@ -408,6 +409,23 @@ class Windows {
         if list.count > TilesView.recycledViews.count {
             TilesView.recycledViews.append(TileView())
         }
+    }
+
+    static func insertAppBindingPendingWindow(_ window: Window) {
+        list.insert(window, at: 0)
+        if list.count > TilesView.recycledViews.count {
+            TilesView.recycledViews.append(TileView())
+        }
+    }
+
+    static func removeAppBindingPendingWindow(_ id: String) {
+        guard let index = list.firstIndex(where: { $0.id == id && $0.isAppBindingPending }) else { return }
+        if index < TilesView.recycledViews.count {
+            TilesView.recycledViews[index].thumbnail.releaseImage()
+            TilesView.recycledViews[index].appIcon.releaseImage()
+            TilesView.recycledViews[index].window_ = nil
+        }
+        list.remove(at: index)
     }
 
     static func removeWindows(_ windows: [Window], _ addWindowlessWindowIfNeeded: Bool) {
